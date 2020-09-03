@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { NbContextMenuModule, NbLayoutModule, NbMenuModule, NbThemeModule } from '@nebular/theme';
+import { NbContextMenuModule, NbLayoutModule, NbMenuModule, NbThemeModule, NbCardModule } from '@nebular/theme';
 import { AnalysisComponent } from './analysis/analysis.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,7 +14,6 @@ import { OverviewComponent } from './overview/overview.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { TrainingComponent } from './training/training.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +23,7 @@ import { TrainingComponent } from './training/training.component';
     TrainingComponent,
     CompetitionComponent,
     AnalysisComponent,
-    MainBackgroundComponent
+    MainBackgroundComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,6 +43,7 @@ import { TrainingComponent } from './training/training.component';
     NbEvaIconsModule,
     NbContextMenuModule,
     NbMenuModule.forRoot(),
+    NbCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
