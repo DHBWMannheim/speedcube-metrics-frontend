@@ -14,7 +14,6 @@ import { OverviewComponent } from './overview/overview.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { TrainingComponent } from './training/training.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +23,7 @@ import { TrainingComponent } from './training/training.component';
     TrainingComponent,
     CompetitionComponent,
     AnalysisComponent,
-    MainBackgroundComponent
+    MainBackgroundComponent,
   ],
   imports: [
     BrowserModule,
