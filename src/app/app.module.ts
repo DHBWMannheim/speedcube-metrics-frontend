@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { NbContextMenuModule, NbLayoutModule, NbMenuModule, NbThemeModule } from '@nebular/theme';
+import { NbButtonModule, NbCardModule, NbContextMenuModule, NbLayoutModule, NbMenuModule, NbThemeModule } from '@nebular/theme';
 import { AnalysisComponent } from './analysis/analysis.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -44,6 +44,8 @@ import { TrainingComponent } from './training/training.component';
     NbEvaIconsModule,
     NbContextMenuModule,
     NbMenuModule.forRoot(),
+    NbCardModule,
+    NbButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
