@@ -9,8 +9,11 @@
                 <p></p>
                 <input type="text" nbInput placeholder="Passwort wiederholen">
                 <p></p>
-                <button nbButton class="login">Login</button>
-                <button nbButton class="registration">Registrieren</button>
+                <button (click)="loginWithGoogle()">Google</button>
+                <button (click)="loginWithGitHub()">Github</button>
+                <p></p>
+                <button nbButton [routerLink]="'/login'" class="login">Login</button>
+                <button nbButton (click)="register()" class="registration">Registrieren</button>
             </nb-card-body>
           </nb-card>
     </nb-layout-column>

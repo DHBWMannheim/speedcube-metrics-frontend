@@ -5,8 +5,8 @@
                 <h2>Trainingsfortschritt</h2>
                 <img src="../../assets/img/Trainingsfortschritt.png" />
                 <p></p>
-                <button nbButton class="overview">Übersicht</button>
-                <button nbButton class="start">Training starten</button>
+                <button nbButton [routerLink]="'/overview'" class="overview">Übersicht</button>
+                <button nbButton [routerLink]="'/main/training'"class="start">Training starten</button>
             </nb-card-body>
           </nb-card>
           <nb-card>
@@ -14,8 +14,8 @@
             <h2>Wettkampffortschritt</h2>
             <img src="../../assets/img/Wettkampffortschritt.png" />
             <p></p>
-            <button nbButton class="overview">Übersicht</button>
-            <button nbButton class="start">Wettkampf starten</button>
+            <button nbButton [routerLink]="'/overview'" class="overview">Übersicht</button>
+            <button nbButton [routerLink]="'/main/competition'" class="start">Wettkampf starten</button>
         </nb-card-body>
       </nb-card>
     </nb-layout-column>

@@ -1,3 +1,6 @@
+body{
+background: linear-gradient(to bottom, blue, white);
+}
 nb-card{
     background-color: #FFFFFF;
     border-radius: 10%;
@@ -10,20 +13,36 @@ h1{
     color: #707070;
 }
 input{
-    border-radius: 10%;
+    border-radius: 1em;
+    height: 2em;
+    width: 80%;
     color: #707070; 
     border: #707070;
+}
+.GoogleLogin{
+    height: 2em;
+    border-radius: 1em;
+    text-align: center;
+    box-shadow: 0.25em 0.25em grey;
+}
+.GithubLogin{
+    height: 2em;
+    background-color: #24292e;
+    color: white;
+    border-radius: 1em;
+    text-align: center;
+    box-shadow: 0.25em 0.25em grey;
 }
 
 .registration{
     background-color: white;
     color: #707070;
-    border: 2px solid #707070;
-    border-radius: 10%;
+    border: 2em solid #707070;
+    border-radius: 2em;
 }
 .login{
     background-color: white;
     color: #227EE8;
-    border: 2px solid #227EE8;
-    border-radius: 10%;
+    border: 2em solid #227EE8;
+    border-radius: 2em;
 }
