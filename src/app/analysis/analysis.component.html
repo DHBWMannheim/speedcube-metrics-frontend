@@ -1,1 +1,47 @@
-<p>analysis works! -Michi</p>
+<nb-layout>
+    <nb-layout-column class="colored-column-basic">
+        <nb-card>
+            <nb-card-header>
+                <div style="text-align: center;">Auswertung</div>
+            </nb-card-header>
+            <nb-card-body>
+                <img src="../../assets/img/AnalyseAuswertung.png" style="display: block; margin: auto;" />
+                <nb-list>
+                    <nb-list-item *ngFor="let round of competition.results">
+                        <div><b>{{ round.round }}. {{round.roundTime}} </b></div>
+                        <br />
+                        <div>{{round.roundInstructions}}</div>
+                    </nb-list-item>
+                </nb-list>
+                <nb-card>
+                    <nb-card-header style="display: block; margin: auto;">Average 3</nb-card-header>
+                    <nb-card-body style="display: block; margin: auto;">
+                        <font size="6">{{competition.averageThree}}</font>
+                    </nb-card-body>
+                </nb-card>
+                <nb-card>
+                    <nb-card-header style="display: block; margin: auto;">Average 5</nb-card-header>
+                    <nb-card-body style="display: block; margin: auto;">
+                        <font size="6">{{competition.averageFive}}</font>
+                    </nb-card-body>
+                </nb-card>
+                <nb-card>
+                    <nb-card-header style="display: block; margin: auto;">Best</nb-card-header>
+                    <nb-card-body style="display: block; margin: auto;">
+                        <font size="6">{{competition.best}}</font>
+                    </nb-card-body>
+                </nb-card>
+                <nb-card>
+                    <nb-card-header style="display: block; margin: auto;">Worst</nb-card-header>
+                    <nb-card-body style="display: block; margin: auto;">
+                        <font size="6">{{competition.worst}}</font>
+                    </nb-card-body>
+                </nb-card>
+            </nb-card-body>
+            <nb-card-footer>
+                <button nbButton shape="round" status="info" style="display: block; margin: auto;">Wettkampf
+                    speichern</button>
+            </nb-card-footer>
+        </nb-card>
+    </nb-layout-column>
+</nb-layout>

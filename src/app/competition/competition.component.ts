@@ -24,6 +24,7 @@ export class CompetitionComponent implements OnInit {
   public time = "00:00.000"
   public round = 1;
   public competition = true;
+  public instruction = "U R F' L2 R' B D' U2 F U' L' D R'"
 
   start() {
     if (this.running) return;
