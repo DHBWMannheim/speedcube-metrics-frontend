@@ -2,8 +2,19 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { NbButtonModule, NbCardModule, NbContextMenuModule, NbLayoutModule, NbMenuModule, NbThemeModule } from '@nebular/theme';
+import {
+  NbButtonModule,
+  NbCardModule,
+  NbContextMenuModule,
+  NbLayoutModule,
+  NbMenuModule,
+  NbThemeModule,
+} from '@nebular/theme';
 import { AnalysisComponent } from './analysis/analysis.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +24,7 @@ import { MainBackgroundComponent } from './main-background/main-background.compo
 import { OverviewComponent } from './overview/overview.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { TrainingComponent } from './training/training.component';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -36,6 +48,10 @@ import { TrainingComponent } from './training/training.component';
       { path: 'main/training', component: TrainingComponent },
       { path: 'main/analysis', component: AnalysisComponent },
     ]),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    AngularFireAnalyticsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     NbThemeModule.forRoot({ name: 'default' }),
@@ -47,6 +63,6 @@ import { TrainingComponent } from './training/training.component';
     NbButtonModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
