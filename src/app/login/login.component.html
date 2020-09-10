@@ -1,15 +1,15 @@
 <nb-layout>
-    <nb-layout-column class="colored-column-basic">
-        <nb-card>
-            <nb-card-body>
-                <h1>Login</h1>
-                <input type="text" nbInput placeholder="Nutzername">
-                <p></p>
-                <input type="text" nbInput placeholder="Passwort">
-                <p></p>
-                <button nbButton class="registration">Registrieren</button>
-                <button nbButton class="login">Login</button>
-            </nb-card-body>
-          </nb-card>
-    </nb-layout-column>
+  <nb-layout-column class="colored-column-basic">
+    <nb-card>
+      <nb-card-body>
+        <h1>Login</h1>
+        <input type="text" nbInput placeholder="Nutzername" />
+        <p></p>
+        <input type="text" nbInput placeholder="Passwort" />
+        <p></p>
+        <button nbButton class="registration">Registrieren</button>
+        <button nbButton (click)="login()" class="login">Login</button>
+      </nb-card-body>
+    </nb-card>
+  </nb-layout-column>
 </nb-layout>

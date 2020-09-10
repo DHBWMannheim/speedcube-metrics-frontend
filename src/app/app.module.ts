@@ -1,9 +1,14 @@
 import { NgModule } from '@angular/core';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbButtonModule, NbCardModule, NbContextMenuModule, NbLayoutModule, NbListModule, NbMenuModule, NbThemeModule } from '@nebular/theme';
+import { environment } from 'src/environments/environment';
 import { AnalysisComponent } from './analysis/analysis.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -36,6 +41,10 @@ import { TrainingComponent } from './training/training.component';
       { path: 'main/training', component: TrainingComponent },
       { path: 'main/analysis', component: AnalysisComponent },
     ]),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    AngularFireAnalyticsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     NbThemeModule.forRoot({ name: 'default' }),
@@ -48,6 +57,6 @@ import { TrainingComponent } from './training/training.component';
     NbListModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
