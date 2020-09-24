@@ -1,19 +1,23 @@
 <nb-layout>
-    <nb-layout-column class="colored-column-basic">
+    <nb-layout-column>
         <nb-card>
             <nb-card-body>
                 <h1>Registrieren</h1>
                 <input type="text" nbInput placeholder="Nutzername">
-                <p></p>
+                <br><br>
                 <input type="text" nbInput placeholder="Passwort">
-                <p></p>
+                <br><br>
                 <input type="text" nbInput placeholder="Passwort wiederholen">
                 <p></p>
-                <button (click)="loginWithGoogle()">Google</button>
-                <button (click)="loginWithGitHub()">Github</button>
-                <p></p>
-                <button nbButton [routerLink]="'/login'" class="login">Login</button>
-                <button nbButton (click)="register()" class="registration">Registrieren</button>
+                <button bnbutton class="GoogleLogin" (click)="loginWithGoogle()">
+                    <img src="../../assets/img/google-logo.png" height="25em" width="25em"> Sign in with Google  
+                </button>
+                <button bnbutton class="GithubLogin" (click)="loginWithGitHub()">
+                    <img src="../../assets/img/github-logo.png" height="25em" width="25em"> Sign in with Github
+                </button>
+                <br><br>
+                <button bnButton [routerLink]="'/login'" class="login">Login</button>
+                <button bnButton (click)="register()" class="registration">Registrieren</button>
             </nb-card-body>
           </nb-card>
     </nb-layout-column>
