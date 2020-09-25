@@ -14,6 +14,10 @@ export class MainBackgroundComponent implements OnInit {
 
   constructor() { }
 
+  changetitle (){
+    document.getElementById('title').textContent = "";
+  }
+
   ngOnInit() {
   }
 

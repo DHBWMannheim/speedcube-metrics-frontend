@@ -3,20 +3,20 @@
     <nb-card>
       <nb-card-body>
         <h1>Login</h1>
-        <input type="text" nbInput placeholder="E-Mail" />
+        <input type="text" nbInput placeholder="E-Mail" id="mail"/>
         <br><br>
-        <input type="text" nbInput placeholder="Passwort" />
+        <input type="text" nbInput placeholder="Passwort" id="password"/>
         <br><br>
         <button bnButton class="GoogleLogin" (click)="loginWithGoogle()">
-          <img src="../../assets/img/google-logo.png" height="25em" width="25em"> Sign in with Google
+          <img src="../../assets/img/google.svg" height="25em" width="25em"> Sign in with Google
         </button>
         <p></p>
         <button bnButton class="GithubLogin" (click)="loginWithGitHub()">
-          <img src="../../assets/img/github-logo.png" height="25em" width="25em"> Sign in with Github
+          <img src="../../assets/img/github.svg" height="25em" width="25em"> Sign in with Github
         </button>
         <br><br>
         <button bnButton class="registration" [routerLink]="'/registration'" >Registrieren</button>
-        <button bnButton class="login" (click)="login('','')" >Login</button>
+        <button bnButton class="login" (click)="login()" >Login</button>
       </nb-card-body>
     </nb-card>
   </nb-layout-column>

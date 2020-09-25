@@ -45,10 +45,12 @@ input{
     background-color: white;
     color: #227EE8;
     border-color: #227EE8;
+    border-width: 0.25em;
     border-radius: 2em;
 }
 .registration{
     color: #707070;
     background-color: white;
+    border-width: 0.25em;
     border-radius: 2em;
 }

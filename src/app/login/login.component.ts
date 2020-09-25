@@ -10,8 +10,11 @@ import { auth } from 'firebase/app';
 export class LoginComponent implements OnInit {
   constructor(public authService: AngularFireAuth) {}
 
-  async login(username, password) {
-    await this.authService.signInWithEmailAndPassword(username, password);
+  async login() {
+    var mail = (<HTMLInputElement>document.getElementById(mail)).value;
+    var password = (<HTMLInputElement>document.getElementById(password)).value;
+    await this.authService.signInWithEmailAndPassword(mail, password);
+    console.log("Login erfolgreich!")
   }
   async loginWithGoogle(){
     await this.authService.signInWithPopup(new auth.GoogleAuthProvider());
@@ -19,10 +22,5 @@ export class LoginComponent implements OnInit {
   async loginWithGitHub(){
     await this.authService.signInWithPopup(new auth.GithubAuthProvider());
   }
-
-  async register() {
-    //await this.authService.createUserWithEmailAndPassword('', '');
-  }
-
   ngOnInit(): void {}
 }
