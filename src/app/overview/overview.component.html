@@ -3,10 +3,11 @@
         <nb-card>
             <nb-card-body>
                 <h2>Trainingsfortschritt</h2>
-                <img src="../../assets/img/Trainingsfortschritt.png" />
+                <canvas id="Trainingchart" width="100em" height="100em"></canvas>
+                <!--<img src="../../assets/img/Trainingsfortschritt.png" /> -->
                 <p></p>
-                <button nbButton [routerLink]="'/overview'" class="overview">Übersicht</button>
-                <button nbButton [routerLink]="'/main/training'"class="start">Training starten</button>
+                <button bnButton [routerLink]="'/main/analysis'" class="overview">Übersicht</button>
+                <button bnButton [routerLink]="'/main/training'"class="start">Training starten</button>
             </nb-card-body>
           </nb-card>
           <nb-card>
@@ -14,8 +15,8 @@
             <h2>Wettkampffortschritt</h2>
             <img src="../../assets/img/Wettkampffortschritt.png" />
             <p></p>
-            <button nbButton [routerLink]="'/overview'" class="overview">Übersicht</button>
-            <button nbButton [routerLink]="'/main/competition'" class="start">Wettkampf starten</button>
+            <button bnButton [routerLink]="'/main/analysis'" class="overview">Übersicht</button>
+            <button bnButton [routerLink]="'/main/competition'" class="start">Wettkampf starten</button>
         </nb-card-body>
       </nb-card>
     </nb-layout-column>
