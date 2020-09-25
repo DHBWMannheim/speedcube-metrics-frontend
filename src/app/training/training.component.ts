@@ -7,9 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TrainingComponent implements OnInit {
 
-  private starttime: number = null;
-  private uiTimerId: number = null;
-
   constructor() {
   }
 
@@ -22,6 +19,10 @@ export class TrainingComponent implements OnInit {
   public running = false
   public blankTime = "00:00.000"
   public time = "00:00.000"
+  public ms = 0
+  public timeElapsed: any = null;
+  public result = []
+  public instruction = "U R F' L2 R' B D' U2 F U' L' D R'"
 
   start() {
     if (this.running) return;
@@ -40,6 +41,13 @@ export class TrainingComponent implements OnInit {
   stop() {
     this.running = false;
     this.timeStopped = new Date();
+    this.result.push(
+      {
+        scamble: this.instruction,
+        time: this.ms,
+        date: new Date(),
+        timeElapsed: this.timeElapsed
+      })
     clearInterval(this.started);
   }
   reset() {
@@ -59,13 +67,15 @@ export class TrainingComponent implements OnInit {
   }
   clockRunning() {
     let currentTime: any = new Date()
-    let timeElapsed: any = new Date(currentTime - this.timeBegan - this.stoppedDuration)
-    let min = timeElapsed.getUTCMinutes()
-    let sec = timeElapsed.getUTCSeconds()
-    let ms = timeElapsed.getUTCMilliseconds();
+    this.timeElapsed = new Date(currentTime - this.timeBegan - this.stoppedDuration)
+    let min = this.timeElapsed.getUTCMinutes()
+    let sec = this.timeElapsed.getUTCSeconds()
+    let ms = this.timeElapsed.getUTCMilliseconds();
     this.time =
       this.zeroPrefix(min, 2) + ":" +
       this.zeroPrefix(sec, 2) + "." +
       this.zeroPrefix(ms, 3);
+    this.ms = this.timeElapsed.getUTCMilliseconds() + this.timeElapsed.getUTCSeconds() * 1000 + this.timeElapsed.getUTCMinutes() * 1000 * 60;
   };
+
 }

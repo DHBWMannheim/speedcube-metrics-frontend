@@ -20,7 +20,7 @@
                     style="display: block; margin: auto;">Start</button>
                 <button nbButton *ngIf="running && competition" (click)="stop()" shape="round" status="info"
                     style="display: block; margin: auto;">Stop</button>
-                <button nbButton *ngIf="!competition" shape="round" status="info"
+                <button nbButton *ngIf="!competition" shape="round" [routerLink]="'/main/analysis'" status="info"
                     style="display: block; margin: auto;">Auswertung</button>
             </nb-card-footer>
         </nb-card>

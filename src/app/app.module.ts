@@ -33,6 +33,7 @@ import { TrainingComponent } from './training/training.component';
   imports: [
     BrowserModule,
     RouterModule.forRoot([
+      { path: '', component: LoginComponent },
       { path: 'login', component: LoginComponent },
       { path: 'registration', component: RegistrationComponent },
       { path: 'main', component: MainBackgroundComponent },
