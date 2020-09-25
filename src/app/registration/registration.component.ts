@@ -25,8 +25,11 @@ export class RegistrationComponent implements OnInit {
   }
 
   async register() {
-    // await this.authService.createUserWithEmailAndPassword('', '');
-    console.log(this.value)
+    var mail = (<HTMLInputElement>document.getElementById(mail)).value;
+    var password1 = (<HTMLInputElement>document.getElementById(password1)).value;
+    var password2 = (<HTMLInputElement>document.getElementById(password2)).value;
+    if (password1 = password2){
+    await this.authService.createUserWithEmailAndPassword(mail, password1);
+    }
   }
-
 }
