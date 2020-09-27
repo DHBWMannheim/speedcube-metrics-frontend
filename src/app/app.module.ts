@@ -18,6 +18,8 @@ import { MainBackgroundComponent } from './main-background/main-background.compo
 import { OverviewComponent } from './overview/overview.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { TrainingComponent } from './training/training.component';
+import {TrainingoverviewComponent} from './trainingoverview/trainingoverview.component';
+import { CompetitionOverviewComponent } from './competition-overview/competition-overview.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { TrainingComponent } from './training/training.component';
     CompetitionComponent,
     AnalysisComponent,
     MainBackgroundComponent,
+    TrainingoverviewComponent,
+    CompetitionOverviewComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +45,9 @@ import { TrainingComponent } from './training/training.component';
       { path: 'main/overview', component: OverviewComponent },
       { path: 'main/training', component: TrainingComponent },
       { path: 'main/analysis', component: AnalysisComponent },
+      { path: 'main/trainingoverview', component: TrainingoverviewComponent},
+      { path: 'main/competitionoverview', component: CompetitionOverviewComponent },
+
     ]),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
