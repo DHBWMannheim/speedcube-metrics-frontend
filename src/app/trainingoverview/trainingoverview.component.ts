@@ -7,6 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TrainingoverviewComponent implements OnInit {
 
+  results = [
+    ["25.09.20", "00:23.34", "00:24:98"],
+    ["25.09.20", "00:23.34", "00:24:98"],
+    ["25.09.20", "00:23.34", "00:24:98"],
+    ["25.09.20", "00:23.34", "00:24:98"],
+  ]
   constructor() { }
 
   ngOnInit(): void {

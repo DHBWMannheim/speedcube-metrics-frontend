@@ -5,3 +5,6 @@ nb-card{
     background-color: #D3E1F5;
     border-radius: 10%;
 }
+tr, td {
+    border-bottom: 1px solid black;
+  }

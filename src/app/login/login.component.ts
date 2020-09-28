@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   async login() {
     var mail = (<HTMLInputElement>document.getElementById(mail)).value;
     var password = (<HTMLInputElement>document.getElementById(password)).value;
+    // TODO try catch blog
     await this.authService.signInWithEmailAndPassword(mail, password);
     console.log("Login erfolgreich!")
   }
