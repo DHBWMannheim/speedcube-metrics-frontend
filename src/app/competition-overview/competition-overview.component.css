@@ -7,4 +7,14 @@ nb-card{
 }
 tr, td {
     border-bottom: 1px solid black;
+    color: #707070;
   }
+.h1 {
+    color: #707070;
+    font-size: 1.5em;
+}
+.h2 {
+    color: #707070;
+    font-size: 1em;
+    text-align: center;
+}
