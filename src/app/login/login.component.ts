@@ -8,20 +8,40 @@ import { auth } from 'firebase/app';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  constructor(public authService: AngularFireAuth) {}
+  isloggedIn : boolean;
+  constructor(public authService: AngularFireAuth) {
+    this.isloggedIn = false;
+  }
 
   async login() {
+    try{
     var mail = (<HTMLInputElement>document.getElementById(mail)).value;
     var password = (<HTMLInputElement>document.getElementById(password)).value;
-    // TODO try catch blog
     await this.authService.signInWithEmailAndPassword(mail, password);
-    console.log("Login erfolgreich!")
+    console.log("Login erfolgreich!");
+    this.isloggedIn = true;
+    }catch(e){
+      console.log(e)
+    }
   }
   async loginWithGoogle(){
+    try{
     await this.authService.signInWithPopup(new auth.GoogleAuthProvider());
+    console.log("Login erfolgreich!");
+    this.isloggedIn = true;
+    }catch(e){
+      console.log(e)
+    }
+    
   }
   async loginWithGitHub(){
+    try{
     await this.authService.signInWithPopup(new auth.GithubAuthProvider());
+    console.log("Login erfolgreich!");
+    this.isloggedIn = true;
+    }catch(e){
+      console.log(e)
+    }
   }
   ngOnInit(): void {}
 }
