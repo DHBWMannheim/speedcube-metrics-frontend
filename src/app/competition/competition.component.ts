@@ -9,7 +9,7 @@ export class CompetitionComponent implements OnInit {
   private starttime: number = null;
   private uiTimerId: number = null;
 
-  constructor() {}
+  constructor() { }
 
   public timeBegan = null;
   public timeStopped: any = null;
@@ -71,17 +71,25 @@ export class CompetitionComponent implements OnInit {
     this.running = false;
     this.timeStopped = new Date();
     if (this.round < 5) {
+      this.result.push({
+        scamble: this.scramble,
+        time: this.ms,
+        round: this.round,
+        date: new Date(),
+        timeElapsed: this.timeElapsed,
+      });
       this.round = this.round + 1;
+      this.generate_scramble()
     } else {
+      this.result.push({
+        scamble: this.scramble,
+        time: this.ms,
+        round: this.round,
+        date: new Date(),
+        timeElapsed: this.timeElapsed,
+      });
       this.competition = false;
     }
-    this.result.push({
-      scamble: this.scramble,
-      time: this.ms,
-      round: this.round,
-      date: new Date(),
-      timeElapsed: this.timeElapsed,
-    });
     clearInterval(this.started);
   }
   reset() {

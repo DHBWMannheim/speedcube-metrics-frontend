@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./training.component.css'],
 })
 export class TrainingComponent implements OnInit {
-  constructor() {}
+  constructor() { }
 
   public timeBegan = null;
   public timeStopped: any = null;
@@ -18,7 +18,7 @@ export class TrainingComponent implements OnInit {
   public ms = 0;
   public timeElapsed: any = null;
   public result = [];
-  public scramble = '';
+
 
   generate_scramble = (): void => {
     const moves = [
