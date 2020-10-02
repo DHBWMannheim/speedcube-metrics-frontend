@@ -23,9 +23,11 @@
     "@angular/router": "~10.0.14",
     "@nebular/eva-icons": "6.0.1",
     "@nebular/theme": "^6.0.1",
+    "chart.js": "^2.9.3",
     "chartjs": "^0.3.24",
     "eva-icons": "^1.1.2",
     "firebase": "^7.19.1",
+    "ng2-charts": "^2.4.2",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"

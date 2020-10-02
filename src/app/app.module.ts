@@ -8,19 +8,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbButtonModule, NbCardModule, NbContextMenuModule, NbLayoutModule, NbListModule, NbMenuModule, NbPopoverModule, NbThemeModule } from '@nebular/theme';
+import { ChartsModule } from 'ng2-charts';
 import { environment } from 'src/environments/environment';
 import { AnalysisComponent } from './analysis/analysis.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CompetitionOverviewComponent } from './competition-overview/competition-overview.component';
 import { CompetitionComponent } from './competition/competition.component';
 import { LoginComponent } from './login/login.component';
 import { MainBackgroundComponent } from './main-background/main-background.component';
 import { OverviewComponent } from './overview/overview.component';
+import { PageNotFoundComponentComponent } from './page-not-found-component/page-not-found-component.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { TrainingComponent } from './training/training.component';
-import {TrainingoverviewComponent} from './trainingoverview/trainingoverview.component';
-import { CompetitionOverviewComponent } from './competition-overview/competition-overview.component';
-import { PageNotFoundComponentComponent } from './page-not-found-component/page-not-found-component.component';
+import { TrainingoverviewComponent } from './trainingoverview/trainingoverview.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,7 @@ import { PageNotFoundComponentComponent } from './page-not-found-component/page-
       { path: 'main/overview', component: OverviewComponent },
       { path: 'main/training', component: TrainingComponent },
       { path: 'main/analysis', component: AnalysisComponent },
-      { path: 'main/trainingoverview', component: TrainingoverviewComponent},
+      { path: 'main/trainingoverview', component: TrainingoverviewComponent },
       { path: 'main/competitionoverview', component: CompetitionOverviewComponent },
       { path: '**', component: PageNotFoundComponentComponent },
 
@@ -67,6 +68,7 @@ import { PageNotFoundComponentComponent } from './page-not-found-component/page-
     NbButtonModule,
     NbListModule,
     NbPopoverModule,
+    ChartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
