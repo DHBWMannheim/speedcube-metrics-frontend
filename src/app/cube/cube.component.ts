@@ -28,6 +28,7 @@ export class CubeComponent implements OnInit {
   camera = null;
   mesh = null;
   light = null;
+  gltf = null;
 
   constructor() {
     this.loader = new GLTFLoader();
@@ -37,163 +38,147 @@ export class CubeComponent implements OnInit {
     this.light = new THREE.AmbientLight(0xffffff, 2);
     this.scene.add(this.light);
 
-    // Create a basic perspective camera
     this.camera = new THREE.PerspectiveCamera(50, 1, 0.6, 1000);
     this.camera.position.z = 5;
 
-    // Create a renderer with Antialiasing
     this.renderer = new THREE.WebGLRenderer({
       antialias: true,
       precision: 'mediump',
     });
-
     this.renderer.setSize(200, 200);
-
-    // Configure renderer clear color
     this.renderer.setClearColor('#ffffff');
-
-    // Configure renderer size
     this.renderer.setSize(window.innerWidth, window.innerHeight);
-
-    // ------------------------------------------------
-    // FUN STARTS HERE
-    // ------------------------------------------------
 
     new OrbitControls(this.camera, this.renderer.domElement);
 
-    this.loader.load(
-      './assets/cube.gltf',
-      (gltf: any) => {
-        const cube = new Cube();
-        cube.move(this.scramble);
-        const scrambleString = cube.asString();
+    this.loader.load('./assets/cube.gltf', (gltf: any) => {
+      this.gltf = gltf;
 
-        this.scene.add(gltf.scene);
-        const cubeModel = gltf.scene.children[2];
+      this.renderCube(this.scramble);
+    });
+  }
 
-        const tileOrder = [
-          'U1',
-          'U2',
-          'U3',
-          'U4',
-          'U5',
-          'U6',
-          'U7',
-          'U8',
-          'U9',
-          'R1',
-          'R2',
-          'R3',
-          'R4',
-          'R5',
-          'R6',
-          'R7',
-          'R8',
-          'R9',
-          'F1',
-          'F2',
-          'F3',
-          'F4',
-          'F5',
-          'F6',
-          'F7',
-          'F8',
-          'F9',
-          'D1',
-          'D2',
-          'D3',
-          'D4',
-          'D5',
-          'D6',
-          'D7',
-          'D8',
-          'D9',
-          'L1',
-          'L2',
-          'L3',
-          'L4',
-          'L5',
-          'L6',
-          'L7',
-          'L8',
-          'L9',
-          'B1',
-          'B2',
-          'B3',
-          'B4',
-          'B5',
-          'B6',
-          'B7',
-          'B8',
-          'B9',
-        ];
+  renderCube(scramble) {
+    const cube = new Cube();
+    cube.move(scramble);
+    const scrambleString = cube.asString();
 
-        tileOrder.forEach((tile, index) => {
-          const meshIndex = cubeModel.children.findIndex(
-            (mesh: any) => mesh.material.name === tile
-          );
+    this.scene.add(this.gltf.scene);
+    const cubeModel = this.gltf.scene.children[2];
 
-          switch (scrambleString[index]) {
-            case 'U':
-              gltf.scene.children[2].children[meshIndex].material.color = {
-                r: 0.8,
-                g: 0.8,
-                b: 0.8,
-                isColor: true,
-              };
-              break;
-            case 'R':
-              gltf.scene.children[2].children[meshIndex].material.color = {
-                r: 0.8,
-                g: 0,
-                b: 0,
-                isColor: true,
-              };
-              break;
-            case 'F':
-              gltf.scene.children[2].children[meshIndex].material.color = {
-                r: 0,
-                g: 0.8,
-                b: 0,
-                isColor: true,
-              };
-              break;
-            case 'D':
-              gltf.scene.children[2].children[meshIndex].material.color = {
-                r: 0.8,
-                g: 0.8,
-                b: 0,
-                isColor: true,
-              };
-              break;
-            case 'L':
-              gltf.scene.children[2].children[meshIndex].material.color = {
-                r: 0.8,
-                g: 0.3,
-                b: 0.1,
-                isColor: true,
-              };
-              break;
-            case 'B':
-              gltf.scene.children[2].children[meshIndex].material.color = {
-                r: 0,
-                g: 0,
-                b: 0.8,
-                isColor: true,
-              };
-              break;
-          }
-        });
-      },
-      (xhr) => {
-        // called while loading is progressing
-        console.log(`${(xhr.loaded / xhr.total) * 100}% loaded`);
-      },
-      (error) => {
-        // called when loading has errors
-        console.error('An error happened', error);
+    const tileOrder = [
+      'U1',
+      'U2',
+      'U3',
+      'U4',
+      'U5',
+      'U6',
+      'U7',
+      'U8',
+      'U9',
+      'R1',
+      'R2',
+      'R3',
+      'R4',
+      'R5',
+      'R6',
+      'R7',
+      'R8',
+      'R9',
+      'F1',
+      'F2',
+      'F3',
+      'F4',
+      'F5',
+      'F6',
+      'F7',
+      'F8',
+      'F9',
+      'D1',
+      'D2',
+      'D3',
+      'D4',
+      'D5',
+      'D6',
+      'D7',
+      'D8',
+      'D9',
+      'L1',
+      'L2',
+      'L3',
+      'L4',
+      'L5',
+      'L6',
+      'L7',
+      'L8',
+      'L9',
+      'B1',
+      'B2',
+      'B3',
+      'B4',
+      'B5',
+      'B6',
+      'B7',
+      'B8',
+      'B9',
+    ];
+
+    tileOrder.forEach((tile, index) => {
+      const meshIndex = cubeModel.children.findIndex(
+        (mesh: any) => mesh.material.name === tile
+      );
+
+      switch (scrambleString[index]) {
+        case 'U':
+          this.gltf.scene.children[2].children[meshIndex].material.color = {
+            r: 0.8,
+            g: 0.8,
+            b: 0.8,
+            isColor: true,
+          };
+          break;
+        case 'R':
+          this.gltf.scene.children[2].children[meshIndex].material.color = {
+            r: 0.8,
+            g: 0,
+            b: 0,
+            isColor: true,
+          };
+          break;
+        case 'F':
+          this.gltf.scene.children[2].children[meshIndex].material.color = {
+            r: 0,
+            g: 0.8,
+            b: 0,
+            isColor: true,
+          };
+          break;
+        case 'D':
+          this.gltf.scene.children[2].children[meshIndex].material.color = {
+            r: 0.8,
+            g: 0.8,
+            b: 0,
+            isColor: true,
+          };
+          break;
+        case 'L':
+          this.gltf.scene.children[2].children[meshIndex].material.color = {
+            r: 0.8,
+            g: 0.3,
+            b: 0.1,
+            isColor: true,
+          };
+          break;
+        case 'B':
+          this.gltf.scene.children[2].children[meshIndex].material.color = {
+            r: 0,
+            g: 0,
+            b: 0.8,
+            isColor: true,
+          };
+          break;
       }
-    );
+    });
   }
 
   ngAfterViewInit() {
@@ -208,7 +193,7 @@ export class CubeComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes.scramble.currentValue);
+    this.renderCube(changes.scramble.currentValue);
   }
 
   ngOnInit(): void {}
