@@ -5,36 +5,41 @@
                 <div style="text-align: center;">Auswertung</div>
             </nb-card-header>
             <nb-card-body>
-                <img src="../../assets/img/AnalyseAuswertung.png" style="display: block; margin: auto;" />
+                <div style="display: block;">
+                    <canvas baseChart width="400" height="400" [datasets]="lineChartData" [labels]="lineChartLabels"
+                        [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
+                        [chartType]="lineChartType" [plugins]="lineChartPlugins">
+                    </canvas>
+                </div>
                 <nb-list>
-                    <nb-list-item *ngFor="let round of competition.results">
-                        <div><b>{{ round.round }}. {{round.roundTime}} </b></div>
+                    <nb-list-item *ngFor="let test of resultRounds">
+                        <div><b>{{ test.round }}. {{test.roundTime}} </b></div>
                         <br />
-                        <div>{{round.roundInstructions}}</div>
+                        <div>{{test.roundInstructions}}</div>
                     </nb-list-item>
                 </nb-list>
                 <nb-card>
                     <nb-card-header style="display: block; margin: auto;">Average 3</nb-card-header>
                     <nb-card-body style="display: block; margin: auto;">
-                        <font size="6">{{competition.averageThree}}</font>
+                        <font size="6">{{averageThree}}</font>
                     </nb-card-body>
                 </nb-card>
                 <nb-card>
                     <nb-card-header style="display: block; margin: auto;">Average 5</nb-card-header>
                     <nb-card-body style="display: block; margin: auto;">
-                        <font size="6">{{competition.averageFive}}</font>
+                        <font size="6">{{averageFive}}</font>
                     </nb-card-body>
                 </nb-card>
                 <nb-card>
                     <nb-card-header style="display: block; margin: auto;">Best</nb-card-header>
                     <nb-card-body style="display: block; margin: auto;">
-                        <font size="6">{{competition.best}}</font>
+                        <font size="6">{{best}}</font>
                     </nb-card-body>
                 </nb-card>
                 <nb-card>
                     <nb-card-header style="display: block; margin: auto;">Worst</nb-card-header>
                     <nb-card-body style="display: block; margin: auto;">
-                        <font size="6">{{competition.worst}}</font>
+                        <font size="6">{{worst}}</font>
                     </nb-card-body>
                 </nb-card>
             </nb-card-body>
