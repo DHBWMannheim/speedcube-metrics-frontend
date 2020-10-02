@@ -22,6 +22,9 @@ import { PageNotFoundComponentComponent } from './page-not-found-component/page-
 import { RegistrationComponent } from './registration/registration.component';
 import { TrainingComponent } from './training/training.component';
 import { TrainingoverviewComponent } from './trainingoverview/trainingoverview.component';
+import { CompetitionOverviewComponent } from './competition-overview/competition-overview.component';
+import { PageNotFoundComponentComponent } from './page-not-found-component/page-not-found-component.component';
+import { CubeComponent } from './cube/cube.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,8 @@ import { TrainingoverviewComponent } from './trainingoverview/trainingoverview.c
     MainBackgroundComponent,
     TrainingoverviewComponent,
     CompetitionOverviewComponent,
-    PageNotFoundComponentComponent
+    PageNotFoundComponentComponent,
+    CubeComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +55,6 @@ import { TrainingoverviewComponent } from './trainingoverview/trainingoverview.c
       { path: 'main/trainingoverview', component: TrainingoverviewComponent },
       { path: 'main/competitionoverview', component: CompetitionOverviewComponent },
       { path: '**', component: PageNotFoundComponentComponent },
-
     ]),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
@@ -73,4 +76,4 @@ import { TrainingoverviewComponent } from './trainingoverview/trainingoverview.c
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
