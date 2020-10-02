@@ -18,7 +18,7 @@ export class TrainingComponent implements OnInit {
   public ms = 0;
   public timeElapsed: any = null;
   public result = [];
-
+  public scramble = '';
 
   generate_scramble = (): void => {
     const moves = [
