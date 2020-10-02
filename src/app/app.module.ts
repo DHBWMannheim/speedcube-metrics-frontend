@@ -15,6 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CompetitionOverviewComponent } from './competition-overview/competition-overview.component';
 import { CompetitionComponent } from './competition/competition.component';
+import { CubeComponent } from './cube/cube.component';
 import { LoginComponent } from './login/login.component';
 import { MainBackgroundComponent } from './main-background/main-background.component';
 import { OverviewComponent } from './overview/overview.component';
@@ -22,9 +23,6 @@ import { PageNotFoundComponentComponent } from './page-not-found-component/page-
 import { RegistrationComponent } from './registration/registration.component';
 import { TrainingComponent } from './training/training.component';
 import { TrainingoverviewComponent } from './trainingoverview/trainingoverview.component';
-import { CompetitionOverviewComponent } from './competition-overview/competition-overview.component';
-import { PageNotFoundComponentComponent } from './page-not-found-component/page-not-found-component.component';
-import { CubeComponent } from './cube/cube.component';
 
 @NgModule({
   declarations: [
@@ -76,4 +74,4 @@ import { CubeComponent } from './cube/cube.component';
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
