@@ -1,48 +1,31 @@
 <nb-layout>
-  <nb-layout-column class="colored-column-basic">
-    <nb-card>
-      <nb-card-header>
-        <button
-          nbButton
-          shape="round"
-          status="info"
-          style="display: block; margin: auto"
-          (click)="generate_scramble()"
-        >
-          Neuer Scramble
-        </button>
-      </nb-card-header>
-      <nb-card-body>
-        <div>{{ scramble }}</div>
-        <app-cube [scramble]="scramble"></app-cube>
-        <div class="stopwatch pt-3">
-          <h1 style="text-align: center">
-            {{ time }}
-          </h1>
-        </div>
-      </nb-card-body>
-      <nb-card-footer>
-        <button
-          nbButton
-          *ngIf="!running"
-          (click)="start()"
-          shape="round"
-          status="info"
-          style="display: block; margin: auto"
-        >
-          Start
-        </button>
-        <button
-          nbButton
-          *ngIf="running"
-          (click)="stop()"
-          shape="round"
-          status="info"
-          style="display: block; margin: auto"
-        >
-          Stop
-        </button>
-      </nb-card-footer>
-    </nb-card>
-  </nb-layout-column>
+    <nb-layout-column class="colored-column-basic">
+        <nb-card>
+            <nb-card-header>
+                <button bnButton shape="round" status="info" style="display: block; margin: auto"
+                    (click)="generate_scramble()" class="newScramble">
+                    Neuer Scramble
+                </button>
+            </nb-card-header>
+            <nb-card-body>
+                <div>{{ scramble }}</div>
+                <app-cube [scramble]="scramble"></app-cube>
+                <div class="stopwatch pt-3">
+                    <h1 style="text-align: center">
+                        {{ time }}
+                    </h1>
+                </div>
+            </nb-card-body>
+            <nb-card-footer>
+                <button bnButton *ngIf="!running" (click)="start()" shape="round" status="info"
+                    style="display: block; margin: auto" class="start">
+                    Start
+                </button>
+                <button bnButton *ngIf="running" (click)="stop()" shape="round" status="info"
+                    style="display: block; margin: auto;" class="start">
+                    Stop
+                </button>
+            </nb-card-footer>
+        </nb-card>
+    </nb-layout-column>
 </nb-layout>

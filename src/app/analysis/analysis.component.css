@@ -1,0 +1,22 @@
+nb-layout-column{
+    background: linear-gradient(to bottom, #3E9DE5, #944DB7);
+    }
+    nb-card{
+        background-color: #D3E1F5;
+
+    }
+    nb-card-body{
+        justify-content: center;
+        text-align: center;
+      }
+    h2{
+        color: #707070;
+    }
+    
+    .start{
+        background-color: white;
+        color: #227EE8;
+        border-color: #227EE8;
+        border-width: 0.25em;
+        border-radius: 2em;
+    }

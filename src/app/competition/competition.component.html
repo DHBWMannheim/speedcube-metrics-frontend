@@ -14,34 +14,16 @@
         </div>
       </nb-card-body>
       <nb-card-footer>
-        <button
-          nbButton
-          *ngIf="!running && competition"
-          (click)="start()"
-          shape="round"
-          status="info"
-          style="display: block; margin: auto"
-        >
+        <button bnButton *ngIf="!running && competition" (click)="start()" shape="round" status="info" class="start"
+          style="display: block; margin: auto">
           Start
         </button>
-        <button
-          nbButton
-          *ngIf="running && competition"
-          (click)="stop()"
-          shape="round"
-          status="info"
-          style="display: block; margin: auto"
-        >
+        <button bnButton *ngIf="running && competition" (click)="stop()" shape="round" status="info" class="start"
+          style="display: block; margin: auto">
           Stop
         </button>
-        <button
-          nbButton
-          *ngIf="!competition"
-          shape="round"
-          [routerLink]="'/main/analysis'"
-          status="info"
-          style="display: block; margin: auto"
-        >
+        <button bnButton *ngIf="!competition" shape="round" [routerLink]="'/main/analysis'" status="info" class="start"
+          style="display: block; margin: auto">
           Auswertung
         </button>
       </nb-card-footer>
