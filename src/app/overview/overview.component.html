@@ -3,9 +3,12 @@
         <nb-card>
             <nb-card-body>
                 <h2>Trainingsfortschritt</h2>
-                <canvas id="Trainingchart" width="100em" height="100em"></canvas>
-                <!--<img src="../../assets/img/Trainingsfortschritt.png" /> -->
-                <p></p>
+                  <div style="display: block;">
+                    <canvas baseChart width="400" height="250" [datasets]="lineChartData" [labels]="lineChartLabels"
+                        [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
+                        [chartType]="lineChartType" [plugins]="lineChartPlugins">
+                    </canvas>
+                  </div>
                 <button bnButton [routerLink]="'/main/trainingoverview'" class="overview">Übersicht</button>
                 <button bnButton [routerLink]="'/main/training'"class="start">Training starten</button>
             </nb-card-body>
@@ -13,8 +16,12 @@
           <nb-card>
           <nb-card-body>
             <h2>Wettkampffortschritt</h2>
-            <img src="../../assets/img/Wettkampffortschritt.png" />
-            <p></p>
+            <div style="display: block;">
+              <canvas baseChart width="400" height="250" [datasets]="lineChartData" [labels]="lineChartLabels"
+                  [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
+                  [chartType]="lineChartType" [plugins]="lineChartPlugins">
+              </canvas>
+            </div>
             <button bnButton [routerLink]="'/main/competitionoverview'" class="overview">Übersicht</button>
             <button bnButton [routerLink]="'/main/competition'" class="start">Wettkampf starten</button>
         </nb-card-body>

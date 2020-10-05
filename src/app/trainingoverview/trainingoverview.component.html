@@ -8,21 +8,21 @@
             <th>Best</th>
             <th>Average</th>
           </tr>
-          <tr *ngFor="let result of results" [nbPopover]="detailPopOver">
-              <td>{{result[0]}}</td>
-              <td>{{result[1]}}</td>
-              <td>{{result[2]}}</td>
+          <tr *ngFor="let result of result" [nbPopover]="detailPopOver">
+              <td>date tbd</td>
+              <td>{{best}}</td>
+              <td>{{averageThree}}</td>
           </tr>  
           </table>
           <ng-template #detailPopOver>
               <div class="h2">3. Average</div>
-              <div class="h1">00:29.34</div>
+              <div class="h1">{{averageThree}}</div>
               <div class="h2">5. Average</div>
-              <div class="h1">00:29.34</div>
+              <div class="h1">{{averageFive}}</div>
               <div class="h2">Best</div>
-              <div class="h1">00:29.34</div>
+              <div class="h1">{{best}}</div>
               <div class="h2">Worst</div>
-              <div class="h1">00:29.34</div>
+              <div class="h1">{{worst}}</div>
           </ng-template>
         </nb-card-body>
     </nb-card>
