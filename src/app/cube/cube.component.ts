@@ -50,7 +50,7 @@ export class CubeComponent implements OnInit {
     this.renderer.setSize(window.innerWidth, window.innerHeight);
 
     const controls = new OrbitControls(this.camera, this.renderer.domElement);
-    controls.enableZoom = false
+    controls.enableZoom = false;
 
     this.loader.load('./assets/cube.gltf', (gltf: any) => {
       this.gltf = gltf;

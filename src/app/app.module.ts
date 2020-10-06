@@ -7,7 +7,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { NbButtonModule, NbCardModule, NbContextMenuModule, NbLayoutModule, NbListModule, NbMenuModule, NbPopoverModule, NbThemeModule } from '@nebular/theme';
+import {
+  NbButtonModule,
+  NbCardModule,
+  NbContextMenuModule,
+  NbLayoutModule,
+  NbListModule,
+  NbMenuModule,
+  NbPopoverModule,
+  NbThemeModule,
+} from '@nebular/theme';
 import { ChartsModule } from 'ng2-charts';
 import { environment } from 'src/environments/environment';
 import { AnalysisComponent } from './analysis/analysis.component';
@@ -23,6 +32,7 @@ import { PageNotFoundComponentComponent } from './page-not-found-component/page-
 import { RegistrationComponent } from './registration/registration.component';
 import { TrainingComponent } from './training/training.component';
 import { TrainingoverviewComponent } from './trainingoverview/trainingoverview.component';
+import { ApiService } from './api.service';
 
 @NgModule({
   declarations: [
@@ -51,7 +61,10 @@ import { TrainingoverviewComponent } from './trainingoverview/trainingoverview.c
       { path: 'main/training', component: TrainingComponent },
       { path: 'main/analysis', component: AnalysisComponent },
       { path: 'main/trainingoverview', component: TrainingoverviewComponent },
-      { path: 'main/competitionoverview', component: CompetitionOverviewComponent },
+      {
+        path: 'main/competitionoverview',
+        component: CompetitionOverviewComponent,
+      },
       { path: '**', component: PageNotFoundComponentComponent },
     ]),
     AngularFireModule.initializeApp(environment.firebase),
@@ -71,7 +84,7 @@ import { TrainingoverviewComponent } from './trainingoverview/trainingoverview.c
     NbPopoverModule,
     ChartsModule,
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
