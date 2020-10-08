@@ -70,6 +70,7 @@ export class TrainingComponent implements OnInit {
     this.running = false;
     this.timeStopped = new Date();
     clearInterval(this.started);
+    this.generate_scramble();
     await this.api.addTrainingSolve({
       scramble: this.scramble,
       time: this.ms,
@@ -80,6 +81,7 @@ export class TrainingComponent implements OnInit {
   cancel() {
     this.running = false;
     this.reset();
+    this.generate_scramble();
     clearInterval(this.started);
   }
   reset() {
