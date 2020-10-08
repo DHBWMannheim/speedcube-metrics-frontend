@@ -1,27 +1,27 @@
-nb-layout-column{
-    background: linear-gradient(to bottom, #3E9DE5, #944DB7);
-    }
-nb-card{
-        background-color: #D3E1F5;
-        border-radius: 10%;
+nb-layout-column {
+  background: linear-gradient(to bottom, #3e9de5, #944db7);
 }
-nb-card-body{
-        justify-content: center;
-        text-align: center;
+nb-card {
+  background-color: #d3e1f5;
+  border-radius: 10px;
 }
-h2{
-    color: #707070;
+nb-card-body {
+  justify-content: center;
+  text-align: center;
 }
-.overview{
-    color: #707070;
-    background-color: white;
-    border-width: 0.25em;
-    border-radius: 2em;
+h2 {
+  color: #707070;
 }
-.start{
-    background-color: white;
-    color: #227EE8;
-    border-color: #227EE8;
-    border-width: 0.25em;
-    border-radius: 2em;
+.overview {
+  color: #707070;
+  background-color: white;
+  border-width: 0.25em;
+  border-radius: 2em;
+}
+.start {
+  background-color: white;
+  color: #227ee8;
+  border-color: #227ee8;
+  border-width: 0.25em;
+  border-radius: 2em;
 }

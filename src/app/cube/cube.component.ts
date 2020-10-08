@@ -66,6 +66,8 @@ export class CubeComponent implements OnInit {
 
     this.scene.add(this.gltf.scene);
     const cubeModel = this.gltf.scene.children[2];
+    this.gltf.scene.children[2].rotation.x = 0.5;
+    this.gltf.scene.children[2].rotation.y = 0.75;
 
     const tileOrder = [
       'U1',
