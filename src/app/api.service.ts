@@ -55,12 +55,13 @@ export class ApiService {
 
   async addCompetition(competition): Promise<void> {
     const solves = await Promise.all(
-      competition.map(async (solve) => {
+      competition.solves.map(async (solve) => {
         const newSolve = await this.firestore.collection('solves').add(solve);
         return this.firestore.doc(`solves/${newSolve.id}`).ref;
       })
     );
     await this.firestore.collection('competitionSolves').add({
+      ...competition,
       solves,
     });
   }

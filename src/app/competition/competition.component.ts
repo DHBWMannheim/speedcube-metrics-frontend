@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-competition',
@@ -6,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./competition.component.css'],
 })
 export class CompetitionComponent implements OnInit {
-  private starttime: number = null;
-  private uiTimerId: number = null;
+  public api: ApiService;
+  public saving: boolean = false;
 
-  constructor() { }
+  constructor(api: ApiService) {
+    this.api = api;
+  }
 
   public timeBegan = null;
   public timeStopped: any = null;
@@ -76,17 +79,17 @@ export class CompetitionComponent implements OnInit {
         time: this.ms,
         round: this.round,
         date: new Date(),
-        timeElapsed: this.timeElapsed,
+        timeElapsed: this.time,
       });
       this.round = this.round + 1;
-      this.generate_scramble()
+      this.generate_scramble();
     } else {
       this.result.push({
         scamble: this.scramble,
         time: this.ms,
         round: this.round,
         date: new Date(),
-        timeElapsed: this.timeElapsed,
+        timeElapsed: this.time,
       });
       this.competition = false;
     }
@@ -125,5 +128,24 @@ export class CompetitionComponent implements OnInit {
       this.timeElapsed.getUTCMilliseconds() +
       this.timeElapsed.getUTCSeconds() * 1000 +
       this.timeElapsed.getUTCMinutes() * 1000 * 60;
+  }
+  async saveCompetition() {
+    try {
+      this.saving = true;
+
+      await this.api.addCompetition({
+        date: new Date(),
+        solves: this.result,
+      });
+    } finally {
+      this.saving = false;
+    }
+  }
+  resetCompetition() {
+    this.reset();
+    this.generate_scramble();
+    this.round = 1;
+    this.result = [];
+    this.competition = true;
   }
 }
