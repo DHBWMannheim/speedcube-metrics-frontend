@@ -1,19 +1,20 @@
-nb-layout-column {
-  background: linear-gradient(to bottom, #3e9de5, #944db7);
+td,
+th {
+  padding: 6px;
 }
-nb-card {
-  background-color: #d3e1f5;
-  border-radius: 10px;
+
+tr:nth-child(even) {
+  background-color: #2a3450;
 }
-tr,
-td {
-  border-bottom: 1px solid black;
-  color: #707070;
+
+tr:nth-child(odd) {
+  background-color: #323e63;
 }
-.h1 {
-  font-size: 1.5em;
-}
-.h2 {
-  font-size: 1em;
-  text-align: center;
+
+th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #222b45;
+  color: white;
 }

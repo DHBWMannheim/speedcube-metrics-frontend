@@ -1,53 +1,65 @@
-<nb-layout>
-    <nb-layout-column class="colored-column-basic">
-        <nb-card>
-            <nb-card-header>
-                <div style="text-align: center;">Auswertung</div>
-            </nb-card-header>
-            <nb-card-body>
-                <div style="display: block;">
-                    <canvas baseChart width="400" height="400" [datasets]="lineChartData" [labels]="lineChartLabels"
-                        [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
-                        [chartType]="lineChartType" [plugins]="lineChartPlugins">
-                    </canvas>
-                </div>
-                <nb-list>
-                    <nb-list-item *ngFor="let test of resultRounds">
-                        <div><b>{{ test.round }}. {{test.roundTime}} </b></div>
-                        <br />
-                        <div>{{test.roundInstructions}}</div>
-                    </nb-list-item>
-                </nb-list>
-                <nb-card>
-                    <nb-card-header style="display: block; margin: auto;">Average 3</nb-card-header>
-                    <nb-card-body style="display: block; margin: auto;">
-                        <font size="6">{{averageThree}}</font>
-                    </nb-card-body>
-                </nb-card>
-                <nb-card>
-                    <nb-card-header style="display: block; margin: auto;">Average 5</nb-card-header>
-                    <nb-card-body style="display: block; margin: auto;">
-                        <font size="6">{{averageFive}}</font>
-                    </nb-card-body>
-                </nb-card>
-                <nb-card>
-                    <nb-card-header style="display: block; margin: auto;">Best</nb-card-header>
-                    <nb-card-body style="display: block; margin: auto;">
-                        <font size="6">{{best}}</font>
-                    </nb-card-body>
-                </nb-card>
-                <nb-card>
-                    <nb-card-header style="display: block; margin: auto;">Worst</nb-card-header>
-                    <nb-card-body style="display: block; margin: auto;">
-                        <font size="6">{{worst}}</font>
-                    </nb-card-body>
-                </nb-card>
-            </nb-card-body>
-            <nb-card-footer>
-                <button bnButton shape="round" status="info" class="start"
-                    style="display: block; margin: auto;">Wettkampf
-                    speichern</button>
-            </nb-card-footer>
-        </nb-card>
-    </nb-layout-column>
-</nb-layout>
+<nb-card>
+  <nb-card-header>
+    <div style="text-align: center">Auswertung</div>
+  </nb-card-header>
+  <nb-card-body>
+    <div style="display: block">
+      <canvas
+        baseChart
+        width="400"
+        height="400"
+        [datasets]="lineChartData"
+        [labels]="lineChartLabels"
+        [options]="lineChartOptions"
+        [colors]="lineChartColors"
+        [legend]="lineChartLegend"
+        [chartType]="lineChartType"
+        [plugins]="lineChartPlugins"
+      >
+      </canvas>
+    </div>
+    <div style="margin: 25px 0">
+      <div *ngFor="let test of resultRounds">
+        <div>
+          {{ test.round }}. Runde: <b>{{ test.roundTime }}</b>
+        </div>
+        <div>{{ test.roundInstructions }}</div>
+        <div style="height: 1px; background-color: white; margin: 8px 0"></div>
+      </div>
+    </div>
+    <div class="analytics-container">
+      <div style="font-weight: 600; margin: 5px 0">Average 3</div>
+      <div style="height: 1px; margin: 0 40px; background-color: #0095ff"></div>
+      <h4 style="margin: 5px 0; color: #0095ff">{{ averageThree }}</h4>
+    </div>
+    <div class="analytics-container">
+      <div style="font-weight: 600; margin: 5px 0">Average 5</div>
+      <div style="height: 1px; margin: 0 40px; background-color: #0095ff"></div>
+      <h4 style="margin: 5px 0; color: #0095ff">{{ averageFive }}</h4>
+    </div>
+    <div class="analytics-container">
+      <div style="font-weight: 600; margin: 5px 0">Best</div>
+      <div style="height: 1px; margin: 0 40px; background-color: #0095ff"></div>
+      <h4 style="margin: 5px 0; color: #0095ff">{{ best }}</h4>
+    </div>
+    <div class="analytics-container">
+      <div style="font-weight: 600; margin: 5px 0">Worst</div>
+      <div style="height: 1px; margin: 0 40px; background-color: #0095ff"></div>
+      <h4 style="margin: 5px 0; color: #0095ff">{{ worst }}</h4>
+    </div>
+  </nb-card-body>
+  <nb-card-footer
+    style="display: flex; flex-direction: column; align-items: center"
+  >
+    <button nbButton outline size="small" status="info">Zur Übersicht</button>
+    <button
+      style="margin-top: 10px"
+      nbButton
+      outline
+      size="small"
+      status="info"
+    >
+      Neuer Wettkampf
+    </button>
+  </nb-card-footer>
+</nb-card>

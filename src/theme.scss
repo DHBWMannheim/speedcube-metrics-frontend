@@ -1,0 +1,11 @@
+@import "~@nebular/theme/styles/theming";
+@import "~@nebular/theme/styles/themes/default";
+@import "~@nebular/theme/styles/themes/dark";
+
+$nb-themes: nb-register-theme(
+  (
+    header-height: 48px,
+  ),
+  dark,
+  dark
+);

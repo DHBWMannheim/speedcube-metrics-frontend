@@ -1,32 +1,61 @@
-<nb-layout>
-  <nb-layout-column class="colored-column-basic">
-    <nb-card>
-      <nb-card-header>
-        <div style="text-align: center">Runde: {{ round }} / 5</div>
-      </nb-card-header>
-      <nb-card-body>
-        <div>{{ scramble }}</div>
-        <app-cube [scramble]="scramble"></app-cube>
-        <div class="stopwatch pt-3">
-          <h1 style="text-align: center">
-            {{ time }}
-          </h1>
-        </div>
-      </nb-card-body>
-      <nb-card-footer>
-        <button bnButton *ngIf="!running && competition" (click)="start()" shape="round" status="info" class="start"
-          style="display: block; margin: auto">
-          Start
-        </button>
-        <button bnButton *ngIf="running && competition" (click)="stop()" shape="round" status="info" class="start"
-          style="display: block; margin: auto">
-          Stop
-        </button>
-        <button bnButton *ngIf="!competition" shape="round" [routerLink]="'/main/analysis'" status="info" class="start"
-          style="display: block; margin: auto">
-          Auswertung
-        </button>
-      </nb-card-footer>
-    </nb-card>
-  </nb-layout-column>
-</nb-layout>
+<nb-card style="text-align: center">
+  <nb-card-header>
+    <div>Runde: {{ round }} / 5</div>
+  </nb-card-header>
+  <nb-card-body>
+    <div style="font-weight: 600">{{ scramble }}</div>
+    <app-cube [scramble]="scramble"></app-cube>
+    <div class="stopwatch pt-3">
+      <h1>
+        {{ time }}
+      </h1>
+    </div>
+  </nb-card-body>
+  <nb-card-footer>
+    <div *ngIf="competition">
+      <button
+        *ngIf="running && competition"
+        nbButton
+        outline
+        size="small"
+        status="danger"
+        (click)="stop()"
+      >
+        Stop
+      </button>
+      <button
+        *ngIf="!running && competition"
+        nbButton
+        outline
+        size="small"
+        status="success"
+        (click)="start()"
+      >
+        Start
+      </button>
+    </div>
+    <div
+      *ngIf="!competition"
+      style="display: flex; flex-direction: column; align-items: center"
+    >
+      <button
+        nbButton
+        outline
+        size="small"
+        status="success"
+        [routerLink]="'/main/analysis'"
+      >
+        Speichern & Auswerten
+      </button>
+      <button
+        style="margin-top: 10px"
+        nbButton
+        outline
+        size="small"
+        status="warning"
+      >
+        Nicht speichern & Wiederholen
+      </button>
+    </div>
+  </nb-card-footer>
+</nb-card>

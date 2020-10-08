@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { Results } from '../results';
+import { format } from 'date-fns';
 
 @Component({
   selector: 'app-trainingoverview',
@@ -8,78 +9,29 @@ import { Results } from '../results';
   styleUrls: ['./trainingoverview.component.css'],
 })
 export class TrainingoverviewComponent implements OnInit {
-  result = [
-    ['25.09.20', '00:23.34', '00:24:98'],
-    ['25.09.20', '00:23.34', '00:24:98'],
-    ['25.09.20', '00:23.34', '00:24:98'],
-    ['25.09.20', '00:23.34', '00:24:98'],
-  ];
-
-  // get api
+  public solves = [];
   public api: ApiService;
+  public loading: boolean = true;
 
   constructor(api: ApiService) {
     this.api = api;
   }
 
+  async getData() {
+    try {
+      this.loading = true;
+      this.solves = await this.api.getTrainingSolves();
+    } finally {
+      this.loading = false;
+    }
+  }
+
   async ngOnInit(): Promise<void> {
-    // fetch training solves example
-    const solves = await this.api.getTrainingSolves();
-    console.log(solves);
+    this.getData();
+  }
 
-    // how to add training solve example
-
-    /* await this.api.addTrainingSolve({
-      scamble: "U R F' L2 R' B D' U2 F U' L' D R'",
-      time: 21236,
-      round: 0,
-      date: new Date(),
-      timeElapsed: '00:21.234',
-    }); */
-
-    const competitions = await this.api.getCompetitionSolves();
-    console.log(competitions);
-
-    // how to add competition example
-
-    /*
-    await this.api.addCompetition([
-      {
-        scamble: "U R F' L2 R' B D' U2 F U' L' D R'",
-        time: 21236,
-        round: 1,
-        date: new Date(),
-        timeElapsed: '00:21.234',
-      },
-      {
-        scamble: "U R F' L2 R' B D' U2 F U' L' D R'",
-        time: 39236,
-        round: 2,
-        date: new Date(),
-        timeElapsed: '00:39.234',
-      },
-      {
-        scamble: "U R F' L2 R' B D' U2 F U' L' D R'",
-        time: 25236,
-        round: 3,
-        date: new Date(),
-        timeElapsed: '00:25.234',
-      },
-      {
-        scamble: "U R F' L2 R' B D' U2 F U' L' D R'",
-        time: 30236,
-        round: 4,
-        date: new Date(),
-        timeElapsed: '00:30.234',
-      },
-      {
-        scamble: "U R F' L2 R' B D' U2 F U' L' D R'",
-        time: 29236,
-        round: 5,
-        date: new Date(),
-        timeElapsed: '00:29.234',
-      },
-    ]); */
+  formatDate(date) {
+    return format(date.toDate(), 'dd.MM.yy kk:mm');
   }
 
   zeroPrefix(num, digit) {

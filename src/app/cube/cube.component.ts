@@ -44,9 +44,10 @@ export class CubeComponent implements OnInit {
     this.renderer = new THREE.WebGLRenderer({
       antialias: true,
       precision: 'mediump',
+      alpha: true
     });
     this.renderer.setSize(200, 200);
-    this.renderer.setClearColor('#D3E1F5');
+    this.renderer.setClearColor(0x000000, 0);
     this.renderer.setSize(window.innerWidth, window.innerHeight);
 
     const controls = new OrbitControls(this.camera, this.renderer.domElement);
