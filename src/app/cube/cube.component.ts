@@ -54,7 +54,6 @@ export class CubeComponent implements OnInit {
 
     this.loader.load('./assets/cube.gltf', (gltf: any) => {
       this.gltf = gltf;
-
       this.renderCube(this.scramble);
     });
   }
@@ -67,7 +66,7 @@ export class CubeComponent implements OnInit {
     this.scene.add(this.gltf.scene);
     const cubeModel = this.gltf.scene.children[2];
     this.gltf.scene.children[2].rotation.x = 0.5;
-    this.gltf.scene.children[2].rotation.y = 0.75;
+    this.gltf.scene.children[2].rotation.y = -0.77;
 
     const tileOrder = [
       'U1',
@@ -196,7 +195,9 @@ export class CubeComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.renderCube(changes.scramble.currentValue);
+    if (this.gltf) {
+      this.renderCube(changes.scramble.currentValue);
+    }
   }
 
   ngOnInit(): void {}
