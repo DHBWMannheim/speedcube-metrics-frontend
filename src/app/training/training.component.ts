@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-training',
@@ -6,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./training.component.css'],
 })
 export class TrainingComponent implements OnInit {
-  constructor() { }
+  public api: ApiService;
+
+  constructor(api: ApiService) {
+    this.api = api;
+  }
 
   public timeBegan = null;
   public timeStopped: any = null;
@@ -17,7 +22,6 @@ export class TrainingComponent implements OnInit {
   public time = '00:00.000';
   public ms = 0;
   public timeElapsed: any = null;
-  public result = [];
   public scramble = '';
 
   generate_scramble = (): void => {
@@ -62,15 +66,20 @@ export class TrainingComponent implements OnInit {
     this.started = setInterval(this.clockRunning.bind(this), 10);
     this.running = true;
   }
-  stop() {
+  async stop() {
     this.running = false;
     this.timeStopped = new Date();
-    this.result.push({
-      scamble: this.scramble,
+    clearInterval(this.started);
+    await this.api.addTrainingSolve({
+      scramble: this.scramble,
       time: this.ms,
       date: new Date(),
-      timeElapsed: this.timeElapsed,
+      timeElapsed: this.time,
     });
+  }
+  cancel() {
+    this.running = false;
+    this.reset();
     clearInterval(this.started);
   }
   reset() {

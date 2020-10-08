@@ -1,9 +1,26 @@
 <nb-card>
-  <nb-card-header>
-    <div style="text-align: center">Auswertung</div>
+  <nb-card-header
+    style="display: flex; justify-content: space-between; align-items: center"
+  >
+    <button
+      nbButton
+      outline
+      status="info"
+      size="small"
+      [routerLink]="'/main/competitionoverview'"
+    >
+      <nb-icon icon="arrow-back-outline"></nb-icon>
+    </button>
+    <div style="text-align: center">
+      <div>Auswertung</div>
+      <div>{{ date }}</div>
+    </div>
+    <button nbButton outline status="info" size="small" (click)="getData()">
+      <nb-icon icon="sync-outline"></nb-icon>
+    </button>
   </nb-card-header>
   <nb-card-body>
-    <div style="display: block">
+    <div [nbSpinner]="loading" nbSpinnerStatus="info" style="display: block">
       <canvas
         baseChart
         width="400"
@@ -18,12 +35,12 @@
       >
       </canvas>
     </div>
-    <div style="margin: 25px 0">
-      <div *ngFor="let test of resultRounds">
+    <div *ngIf="solves" style="margin: 25px 0">
+      <div *ngFor="let solve of solves">
         <div>
-          {{ test.round }}. Runde: <b>{{ test.roundTime }}</b>
+          {{ solve.round }}. Runde: <b>{{ solve.timeElapsed }}</b>
         </div>
-        <div>{{ test.roundInstructions }}</div>
+        <div style="font-size: smaller">{{ solve.scramble }}</div>
         <div style="height: 1px; background-color: white; margin: 8px 0"></div>
       </div>
     </div>
@@ -48,16 +65,13 @@
       <h4 style="margin: 5px 0; color: #0095ff">{{ worst }}</h4>
     </div>
   </nb-card-body>
-  <nb-card-footer
-    style="display: flex; flex-direction: column; align-items: center"
-  >
-    <button nbButton outline size="small" status="info">Zur Übersicht</button>
+  <nb-card-footer style="display: flex; justify-content: center">
     <button
-      style="margin-top: 10px"
       nbButton
       outline
       size="small"
       status="info"
+      [routerLink]="'/main/competition'"
     >
       Neuer Wettkampf
     </button>

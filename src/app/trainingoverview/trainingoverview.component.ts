@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
-import { format } from 'date-fns';
+import { StatisticsService } from '../statistics.service';
 
 @Component({
   selector: 'app-trainingoverview',
@@ -10,10 +10,12 @@ import { format } from 'date-fns';
 export class TrainingoverviewComponent implements OnInit {
   public solves = [];
   public api: ApiService;
+  public statistics: StatisticsService;
   public loading: boolean = true;
 
-  constructor(api: ApiService) {
+  constructor(api: ApiService, statistics: StatisticsService) {
     this.api = api;
+    this.statistics = statistics;
   }
 
   async getData() {
@@ -30,6 +32,6 @@ export class TrainingoverviewComponent implements OnInit {
   }
 
   formatDate(date) {
-    return format(date.toDate(), 'dd.MM.yy kk:mm');
+    return this.statistics.formatDate(date);
   }
 }

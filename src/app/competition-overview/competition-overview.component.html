@@ -1,4 +1,4 @@
-<nb-card>
+<nb-card [nbSpinner]="loading" nbSpinnerStatus="info" style="min-height: 400px">
   <nb-card-body>
     <div style="display: flex; align-items: center">
       <div style="font-weight: 600">Wettkampfübersicht</div>
@@ -20,9 +20,19 @@
         <th>Analyse</th>
       </tr>
       <tr *ngFor="let competition of competitions">
-        <td>datum</td>
-        <td>test</td>
-        <td>analyse</td>
+        <td>{{ formatDate(competition.date) }}</td>
+        <td>{{ averageThree(competition.solves) }}</td>
+        <td style="text-align: center">
+          <button
+            nbButton
+            outline
+            status="info"
+            size="tiny"
+            (click)="openAnalytics(competition.id)"
+          >
+            <nb-icon icon="bar-chart-outline"></nb-icon>
+          </button>
+        </td>
       </tr>
     </table>
   </nb-card-body>

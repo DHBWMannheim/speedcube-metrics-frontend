@@ -14,6 +14,10 @@ export class CompetitionComponent implements OnInit {
     this.api = api;
   }
 
+  ngOnInit(): void {
+    this.generate_scramble();
+  }
+
   public timeBegan = null;
   public timeStopped: any = null;
   public stoppedDuration: any = 0;
@@ -52,10 +56,6 @@ export class CompetitionComponent implements OnInit {
     this.scramble = scramble.trim();
   };
 
-  ngOnInit(): void {
-    this.generate_scramble();
-  }
-
   start() {
     if (this.running) return;
     this.reset();
@@ -75,7 +75,7 @@ export class CompetitionComponent implements OnInit {
     this.timeStopped = new Date();
     if (this.round < 5) {
       this.result.push({
-        scamble: this.scramble,
+        scramble: this.scramble,
         time: this.ms,
         round: this.round,
         date: new Date(),
@@ -85,7 +85,7 @@ export class CompetitionComponent implements OnInit {
       this.generate_scramble();
     } else {
       this.result.push({
-        scamble: this.scramble,
+        scramble: this.scramble,
         time: this.ms,
         round: this.round,
         date: new Date(),

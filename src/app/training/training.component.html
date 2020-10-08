@@ -19,17 +19,7 @@
       </h1>
     </div>
   </nb-card-body>
-  <nb-card-footer>
-    <button
-      *ngIf="running"
-      nbButton
-      outline
-      size="small"
-      status="danger"
-      (click)="stop()"
-    >
-      Stop
-    </button>
+  <nb-card-footer *ngIf="!running">
     <button
       *ngIf="!running"
       nbButton
@@ -39,6 +29,17 @@
       (click)="start()"
     >
       Start
+    </button>
+  </nb-card-footer>
+  <nb-card-footer
+    *ngIf="running"
+    style="display: grid; grid-template-columns: 1fr 1fr; grid-gap: 10px"
+  >
+    <button nbButton outline size="small" status="warning" (click)="cancel()">
+      Abbrechen
+    </button>
+    <button nbButton outline size="small" status="danger" (click)="stop()">
+      Stop
     </button>
   </nb-card-footer>
 </nb-card>

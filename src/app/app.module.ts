@@ -36,6 +36,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { TrainingComponent } from './training/training.component';
 import { TrainingoverviewComponent } from './trainingoverview/trainingoverview.component';
 import { ApiService } from './api.service';
+import { StatisticsService } from './statistics.service';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,7 @@ import { ApiService } from './api.service';
       { path: 'main/competition', component: CompetitionComponent },
       { path: 'main/overview', component: OverviewComponent },
       { path: 'main/training', component: TrainingComponent },
-      { path: 'main/analysis', component: AnalysisComponent },
+      { path: 'main/analysis/:id', component: AnalysisComponent },
       { path: 'main/trainingoverview', component: TrainingoverviewComponent },
       {
         path: 'main/competitionoverview',
@@ -90,7 +91,7 @@ import { ApiService } from './api.service';
     NbMenuModule.forRoot(),
     NbSpinnerModule,
   ],
-  providers: [ApiService],
+  providers: [ApiService, StatisticsService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
