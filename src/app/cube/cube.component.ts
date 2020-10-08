@@ -46,7 +46,7 @@ export class CubeComponent implements OnInit {
       precision: 'mediump',
     });
     this.renderer.setSize(200, 200);
-    this.renderer.setClearColor('#ffffff');
+    this.renderer.setClearColor('#D3E1F5');
     this.renderer.setSize(window.innerWidth, window.innerHeight);
 
     const controls = new OrbitControls(this.camera, this.renderer.domElement);
