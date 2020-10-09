@@ -21,6 +21,7 @@ import {
   NbSidebarModule,
   NbSpinnerModule,
   NbThemeModule,
+  NbUserModule,
 } from '@nebular/theme';
 import { ChartsModule } from 'ng2-charts';
 import { environment } from 'src/environments/environment';
@@ -79,7 +80,8 @@ import { routes } from './routes'
     NbSpinnerModule,
     NbInputModule,
     NbFormFieldModule,
-    FormsModule
+    FormsModule,
+    NbUserModule
   ],
   providers: [ApiService, StatisticsService],
   bootstrap: [AppComponent],

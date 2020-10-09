@@ -9,11 +9,20 @@ import { NbMenuItem, NbMenuService, NbSidebarService } from '@nebular/theme';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  constructor(private sidebarService: NbSidebarService, menuService: NbMenuService, authService: AngularFireAuth, router: Router) {
+  public email: string = ''
+
+  constructor(private sidebarService: NbSidebarService, menuService: NbMenuService, private authService: AngularFireAuth, router: Router) {
     menuService.onItemClick().subscribe(({item}) => {
       if (item.title === 'Logout') {
-        authService.signOut().then(() => router.navigateByUrl('login'))
+        this.authService.signOut().then(() => {
+          localStorage.clear()
+          router.navigateByUrl('login')
+        })
       }
+    })
+
+    this.authService.user.subscribe(user => {
+      this.email = user ? user.email : ''
     })
   }
 

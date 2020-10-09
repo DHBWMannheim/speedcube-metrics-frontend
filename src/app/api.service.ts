@@ -6,14 +6,16 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class ApiService {
   private firestore: AngularFirestore;
+  private uid: string;
 
   constructor(firestore: AngularFirestore) {
     this.firestore = firestore;
+    this.uid = localStorage.getItem('rubiks-uid')
   }
 
   async getTrainingSolves() {
     return this.firestore
-      .collection('trainingSolves')
+      .collection('trainingSolves', ref => ref.where('uid', '==', this.uid))
       .get()
       .toPromise()
       .then(
@@ -30,13 +32,14 @@ export class ApiService {
   async addTrainingSolve(solve): Promise<void> {
     const newSolve = await this.firestore.collection('solves').add(solve);
     await this.firestore.collection('trainingSolves').add({
+      uid: this.uid,
       solve: this.firestore.doc(`solves/${newSolve.id}`).ref,
     });
   }
 
   async getCompetitionSolves() {
     return this.firestore
-      .collection('competitionSolves')
+      .collection('competitionSolves', ref => ref.where('uid', '==', this.uid))
       .get()
       .toPromise()
       .then(
@@ -84,6 +87,7 @@ export class ApiService {
       })
     );
     await this.firestore.collection('competitionSolves').add({
+      uid: this.uid,
       ...competition,
       solves,
     });
