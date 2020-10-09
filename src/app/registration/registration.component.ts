@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { auth } from 'firebase/app';
@@ -8,7 +8,7 @@ import { auth } from 'firebase/app';
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 })
-export class RegistrationComponent implements OnInit {
+export class RegistrationComponent {
   public showPassword = false;
 
   public email: string = '';
@@ -30,26 +30,6 @@ export class RegistrationComponent implements OnInit {
     this.showPassword = !this.showPassword;
   }
 
-  ngOnInit(): void {
-    console.log(this.authService.user)
-  }
-
-  async loginWithGoogle(){
-    try {
-      await this.authService.signInWithPopup(new auth.GoogleAuthProvider());
-    } catch(e) {
-      console.log(e)
-    }
-  }
-
-  async loginWithGitHub(){
-    try {
-      await this.authService.signInWithPopup(new auth.GithubAuthProvider());
-    } catch(e) {
-      console.log(e)
-    }
-  }
-
   async register() {
     if (this.email && this.password1 === this.password2){
       try {
@@ -63,4 +43,29 @@ export class RegistrationComponent implements OnInit {
       }
     }
   }
+
+  async loginWithGoogle() {
+    try {
+      this.registrating = true;
+      const { user }: auth.UserCredential = await this.authService.signInWithPopup(new auth.GoogleAuthProvider());
+
+      localStorage.setItem('rubiks-uid', user.uid)
+      this.router.navigateByUrl('/')
+    } finally {
+      this.registrating = false;
+    }
+  }
+
+  async loginWithGitHub() {
+    try {
+      this.registrating = true;
+      const { user }: auth.UserCredential = await this.authService.signInWithPopup(new auth.GithubAuthProvider());
+
+      localStorage.setItem('rubiks-uid', user.uid)
+      this.router.navigateByUrl('/')
+    } finally {
+      this.registrating = false;
+    }
+  }
+
 }

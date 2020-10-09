@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { auth } from 'firebase/app';
@@ -8,7 +8,7 @@ import { auth } from 'firebase/app';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   public loggingIn: boolean = false;
   public showPassword = false;
 
@@ -40,25 +40,27 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  async loginWithGoogle(){
+  async loginWithGoogle() {
     try {
-      await this.authService.signInWithPopup(new auth.GoogleAuthProvider());
-      console.log("Login erfolgreich!");
-    } catch(e) {
-      console.log(e)
+      this.loggingIn = true;
+      const { user }: auth.UserCredential = await this.authService.signInWithPopup(new auth.GoogleAuthProvider());
+
+      localStorage.setItem('rubiks-uid', user.uid)
+      this.router.navigateByUrl('/')
+    } finally {
+      this.loggingIn = false;
     }
   }
 
-  async loginWithGitHub(){
+  async loginWithGitHub() {
     try {
-      await this.authService.signInWithPopup(new auth.GithubAuthProvider());
-      console.log("Login erfolgreich!");
-    } catch(e) {
-      console.log(e)
-    }
-  }
+      this.loggingIn = true;
+      const { user }: auth.UserCredential = await this.authService.signInWithPopup(new auth.GithubAuthProvider());
 
-  ngOnInit(): void {
-    this.authService.signOut()
+      localStorage.setItem('rubiks-uid', user.uid)
+      this.router.navigateByUrl('/')
+    } finally {
+      this.loggingIn = false;
+    }
   }
 }
