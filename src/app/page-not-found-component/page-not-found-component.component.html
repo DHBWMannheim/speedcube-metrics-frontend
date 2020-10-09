@@ -1,10 +1,8 @@
-<nb-layout>
-    <nb-layout-column>
-      <nb-card>
-        <nb-card-body>
-          <h1>Uups! Diese Seite ist nicht vorhanden.</h1>
-          <button bnButton [routerLink]="'/overview'">Zurück zur Übersicht</button>
-        </nb-card-body>
-      </nb-card>
-    </nb-layout-column>
-  </nb-layout>
+<nb-card>
+  <nb-card-body style="text-align: center;">
+    <h1>Uups! Diese Seite ist nicht vorhanden.</h1>
+    <div style="display: grid; grid-template-columns: 1fr; grid-gap: 10px; margin: 15px 40px;">
+    <button nbButton outline size="tiny" status="success" [routerLink]="'/'">Zurück zur Übersicht</button>
+  </div>
+  </nb-card-body>
+</nb-card>
