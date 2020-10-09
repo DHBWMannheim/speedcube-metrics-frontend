@@ -1,24 +1,47 @@
-<nb-layout>
-    <nb-layout-column>
-        <nb-card>
-            <nb-card-body>
-                <h1>Registrieren</h1>
-                <input type="text" nbInput placeholder="E-mail" id="mail">
-                <br><br>
-                <input type="text" nbInput placeholder="Passwort" id="password1">
-                <br><br>
-                <input type="text" nbInput placeholder="Passwort wiederholen" id="password2">
-                <p></p>
-                <button bnbutton class="GoogleLogin" (click)="loginWithGoogle()">
-                    <img src="../../assets/img/google.svg" height="25em" width="25em"> Sign in with Google  
-                </button>
-                <button bnbutton class="GithubLogin" (click)="loginWithGitHub()">
-                    <img src="../../assets/img/github.svg" height="25em" width="25em"> Sign in with Github
-                </button>
-                <br><br>
-                <button bnButton [routerLink]="'/login'" class="login">Login</button>
-                <button bnButton (click)="register()" class="registration">Registrieren</button>
-            </nb-card-body>
-          </nb-card>
-    </nb-layout-column>
-</nb-layout>
+<nb-card>
+  <nb-card-body style="text-align: center;">
+    <h2>Registrieren</h2>
+    <nb-form-field>
+      <nb-icon nbPrefix icon="email-outline"></nb-icon>
+      <input type="text" nbInput fullWidth status="info" placeholder="E-Mail" [(ngModel)]="email">
+    </nb-form-field>
+    <nb-form-field style="margin: 15px 0;">
+      <nb-icon nbPrefix icon="lock-outline"></nb-icon>
+      <input [type]="getInputType()" nbInput fullWidth status="info" placeholder="Passwort" [(ngModel)]="password1">
+      <button nbSuffix nbButton ghost (click)="toggleShowPassword()">
+        <nb-icon [icon]="showPassword ? 'eye-outline' : 'eye-off-outline'"
+                  pack="eva"
+                  [attr.aria-label]="showPassword ? 'hide password' : 'show password'">
+        </nb-icon>
+      </button>
+    </nb-form-field>
+    <nb-form-field style="margin: 15px 0;">
+      <nb-icon nbPrefix icon="lock-outline"></nb-icon>
+      <input [type]="getInputType()" nbInput fullWidth status="info" placeholder="Passwort wiederholen" [(ngModel)]="password2">
+      <button nbSuffix nbButton ghost (click)="toggleShowPassword()">
+        <nb-icon [icon]="showPassword ? 'eye-outline' : 'eye-off-outline'"
+                  pack="eva"
+                  [attr.aria-label]="showPassword ? 'hide password' : 'show password'">
+        </nb-icon>
+      </button>
+    </nb-form-field>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; grid-gap: 10px">
+      <button nbButton outline size="small" status="info" [routerLink]="'/login'">
+        Login
+      </button>
+      <button [nbSpinner]="registrating" nbSpinnerStatus="info" nbButton outline size="small" status="info" (click)="register()">
+        Registrieren
+      </button>
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr; grid-gap: 10px; margin: 15px 40px;">
+      <button nbButton outline size="tiny" status="success" (click)="loginWithGoogle()">
+        <nb-icon icon="google"></nb-icon>
+        Mit Google registrieren
+      </button>
+      <button nbButton outline size="tiny" status="success" (click)="loginWithGitHub()">
+        <nb-icon icon="github"></nb-icon>
+        Mit GitHub registrieren
+      </button>
+    </div>
+  </nb-card-body>
+</nb-card>

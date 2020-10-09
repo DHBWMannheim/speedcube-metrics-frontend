@@ -11,7 +11,9 @@ import {
   NbButtonModule,
   NbCardModule,
   NbContextMenuModule,
+  NbFormFieldModule,
   NbIconModule,
+  NbInputModule,
   NbLayoutModule,
   NbListModule,
   NbMenuModule,
@@ -29,7 +31,6 @@ import { CompetitionOverviewComponent } from './competition-overview/competition
 import { CompetitionComponent } from './competition/competition.component';
 import { CubeComponent } from './cube/cube.component';
 import { LoginComponent } from './login/login.component';
-import { MainBackgroundComponent } from './main-background/main-background.component';
 import { OverviewComponent } from './overview/overview.component';
 import { PageNotFoundComponentComponent } from './page-not-found-component/page-not-found-component.component';
 import { RegistrationComponent } from './registration/registration.component';
@@ -37,6 +38,8 @@ import { TrainingComponent } from './training/training.component';
 import { TrainingoverviewComponent } from './trainingoverview/trainingoverview.component';
 import { ApiService } from './api.service';
 import { StatisticsService } from './statistics.service';
+import { FormsModule } from '@angular/forms';
+import { routes } from './routes'
 
 @NgModule({
   declarations: [
@@ -47,7 +50,6 @@ import { StatisticsService } from './statistics.service';
     TrainingComponent,
     CompetitionComponent,
     AnalysisComponent,
-    MainBackgroundComponent,
     TrainingoverviewComponent,
     CompetitionOverviewComponent,
     PageNotFoundComponentComponent,
@@ -55,22 +57,7 @@ import { StatisticsService } from './statistics.service';
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot([
-      { path: '', component: LoginComponent },
-      { path: 'login', component: LoginComponent },
-      { path: 'registration', component: RegistrationComponent },
-      { path: 'main', component: MainBackgroundComponent },
-      { path: 'main/competition', component: CompetitionComponent },
-      { path: 'main/overview', component: OverviewComponent },
-      { path: 'main/training', component: TrainingComponent },
-      { path: 'main/analysis/:id', component: AnalysisComponent },
-      { path: 'main/trainingoverview', component: TrainingoverviewComponent },
-      {
-        path: 'main/competitionoverview',
-        component: CompetitionOverviewComponent,
-      },
-      { path: '**', component: PageNotFoundComponentComponent },
-    ]),
+    RouterModule.forRoot(routes),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
@@ -90,6 +77,9 @@ import { StatisticsService } from './statistics.service';
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
     NbSpinnerModule,
+    NbInputModule,
+    NbFormFieldModule,
+    FormsModule
   ],
   providers: [ApiService, StatisticsService],
   bootstrap: [AppComponent],

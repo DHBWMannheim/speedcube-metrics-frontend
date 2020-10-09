@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 import { auth } from 'firebase/app';
 
 @Component({
@@ -8,40 +9,56 @@ import { auth } from 'firebase/app';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  isloggedIn : boolean;
-  constructor(public authService: AngularFireAuth) {
-    this.isloggedIn = false;
+  public loggingIn: boolean = false;
+  public showPassword = false;
+
+  public email: string = '';
+  public password: string  = ''
+
+  constructor(public authService: AngularFireAuth, public router: Router) {}
+
+  getInputType() {
+    if (this.showPassword) {
+      return 'text';
+    }
+    return 'password';
+  }
+
+  toggleShowPassword() {
+    this.showPassword = !this.showPassword;
   }
 
   async login() {
     try{
-    var mail = (<HTMLInputElement>document.getElementById(mail)).value;
-    var password = (<HTMLInputElement>document.getElementById(password)).value;
-    await this.authService.signInWithEmailAndPassword(mail, password);
-    console.log("Login erfolgreich!");
-    this.isloggedIn = true;
-    }catch(e){
-      console.log(e)
+      this.loggingIn = true;
+      const { user }: auth.UserCredential = await this.authService.signInWithEmailAndPassword(this.email, this.password);
+
+      localStorage.setItem('rubiks-uid', user.uid)
+      this.router.navigateByUrl('/')
+    } finally {
+      this.loggingIn = false;
     }
   }
+
   async loginWithGoogle(){
-    try{
-    await this.authService.signInWithPopup(new auth.GoogleAuthProvider());
-    console.log("Login erfolgreich!");
-    this.isloggedIn = true;
-    }catch(e){
+    try {
+      await this.authService.signInWithPopup(new auth.GoogleAuthProvider());
+      console.log("Login erfolgreich!");
+    } catch(e) {
       console.log(e)
     }
-    
   }
+
   async loginWithGitHub(){
-    try{
-    await this.authService.signInWithPopup(new auth.GithubAuthProvider());
-    console.log("Login erfolgreich!");
-    this.isloggedIn = true;
-    }catch(e){
+    try {
+      await this.authService.signInWithPopup(new auth.GithubAuthProvider());
+      console.log("Login erfolgreich!");
+    } catch(e) {
       console.log(e)
     }
   }
-  ngOnInit(): void {}
+
+  ngOnInit(): void {
+    this.authService.signOut()
+  }
 }

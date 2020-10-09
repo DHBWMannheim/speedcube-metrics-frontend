@@ -43,6 +43,6 @@ export class CompetitionOverviewComponent implements OnInit {
   }
 
   openAnalytics(id: string) {
-    this.router.navigateByUrl(`/main/analysis/${id}`);
+    this.router.navigateByUrl(`/analysis/${id}`);
   }
 }
