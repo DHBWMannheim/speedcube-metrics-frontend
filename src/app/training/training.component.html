@@ -1,51 +1,45 @@
-<nb-layout>
-  <nb-layout-column class="colored-column-basic">
-    <nb-card>
-      <nb-card-header>
-        <button
-          bnButton
-          shape="round"
-          status="info"
-          style="display: block; margin: auto"
-          (click)="generate_scramble()"
-          class="newScramble"
-        >
-          Neuer Scramble
-        </button>
-      </nb-card-header>
-      <nb-card-body>
-        <div>{{ scramble }}</div>
-        <app-cube [scramble]="scramble"></app-cube>
-        <div class="stopwatch pt-3">
-          <h1 style="text-align: center">
-            {{ time }}
-          </h1>
-        </div>
-      </nb-card-body>
-      <nb-card-footer>
-        <button
-          bnButton
-          *ngIf="!running"
-          (click)="start()"
-          shape="round"
-          status="info"
-          style="display: block; margin: auto"
-          class="start"
-        >
-          Start
-        </button>
-        <button
-          bnButton
-          *ngIf="running"
-          (click)="stop()"
-          shape="round"
-          status="info"
-          style="display: block; margin: auto"
-          class="start"
-        >
-          Stop
-        </button>
-      </nb-card-footer>
-    </nb-card>
-  </nb-layout-column>
-</nb-layout>
+<nb-card style="text-align: center">
+  <nb-card-header>
+    <button
+      nbButton
+      outline
+      size="small"
+      status="info"
+      (click)="generate_scramble()"
+    >
+      Neuer Scramble
+    </button>
+  </nb-card-header>
+  <nb-card-body>
+    <div style="font-weight: 600">{{ scramble }}</div>
+    <app-cube [scramble]="scramble"></app-cube>
+    <div class="stopwatch pt-3">
+      <h1>
+        {{ time }}
+      </h1>
+    </div>
+  </nb-card-body>
+  <nb-card-footer *ngIf="!running">
+    <button
+      *ngIf="!running"
+      nbButton
+      outline
+      size="small"
+      status="success"
+      (click)="start()"
+    >
+      Start
+    </button>
+  </nb-card-footer>
+  <nb-card-footer
+    *ngIf="running"
+    style="display: grid; grid-template-columns: 1fr 1fr; grid-gap: 10px"
+  >
+    <button nbButton outline size="small" status="warning" (click)="cancel()">
+      Abbrechen
+    </button>
+    <button nbButton outline size="small" status="danger" (click)="stop()">
+      Stop
+    </button>
+  </nb-card-footer>
+</nb-card>

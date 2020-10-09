@@ -1,22 +1,8 @@
-nb-layout-column{
-    background: linear-gradient(to bottom, #3E9DE5, #944DB7);
-    }
-    nb-card{
-        background-color: #D3E1F5;
-
-    }
-    nb-card-body{
-        justify-content: center;
-        text-align: center;
-      }
-    h2{
-        color: #707070;
-    }
-    
-    .start{
-        background-color: white;
-        color: #227EE8;
-        border-color: #227EE8;
-        border-width: 0.25em;
-        border-radius: 2em;
-    }
+.analytics-container {
+  margin-top: 25px;
+  border: 1px solid #0095ff;
+  border-radius: 10px;
+  text-align: center;
+  background-color: rgba(0, 149, 255, 0.1);
+  color: #0095ff;
+}

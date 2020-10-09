@@ -1,1 +1,20 @@
-<router-outlet></router-outlet>
+<nb-layout>
+  <nb-layout-header fixed>
+    <button
+      style="margin-left: auto"
+      nbButton
+      outline
+      status="info"
+      size="small"
+      (click)="toggle()"
+    >
+      <nb-icon icon="menu-outline"></nb-icon>
+    </button>
+  </nb-layout-header>
+  <nb-sidebar right tag="right" fixed state="collapsed">
+    <nb-menu [items]="menuItems" (click)="toggle()"></nb-menu>
+  </nb-sidebar>
+  <nb-layout-column>
+    <router-outlet></router-outlet>
+  </nb-layout-column>
+</nb-layout>

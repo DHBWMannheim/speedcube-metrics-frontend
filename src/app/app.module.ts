@@ -11,10 +11,13 @@ import {
   NbButtonModule,
   NbCardModule,
   NbContextMenuModule,
+  NbIconModule,
   NbLayoutModule,
   NbListModule,
   NbMenuModule,
   NbPopoverModule,
+  NbSidebarModule,
+  NbSpinnerModule,
   NbThemeModule,
 } from '@nebular/theme';
 import { ChartsModule } from 'ng2-charts';
@@ -33,6 +36,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { TrainingComponent } from './training/training.component';
 import { TrainingoverviewComponent } from './trainingoverview/trainingoverview.component';
 import { ApiService } from './api.service';
+import { StatisticsService } from './statistics.service';
 
 @NgModule({
   declarations: [
@@ -59,7 +63,7 @@ import { ApiService } from './api.service';
       { path: 'main/competition', component: CompetitionComponent },
       { path: 'main/overview', component: OverviewComponent },
       { path: 'main/training', component: TrainingComponent },
-      { path: 'main/analysis', component: AnalysisComponent },
+      { path: 'main/analysis/:id', component: AnalysisComponent },
       { path: 'main/trainingoverview', component: TrainingoverviewComponent },
       {
         path: 'main/competitionoverview',
@@ -73,18 +77,21 @@ import { ApiService } from './api.service';
     AngularFireAnalyticsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    NbThemeModule.forRoot({ name: 'default' }),
+    NbThemeModule.forRoot({ name: 'dark' }),
     NbLayoutModule,
     NbEvaIconsModule,
+    NbIconModule,
     NbContextMenuModule,
-    NbMenuModule.forRoot(),
     NbCardModule,
     NbButtonModule,
     NbListModule,
     NbPopoverModule,
     ChartsModule,
+    NbSidebarModule.forRoot(),
+    NbMenuModule.forRoot(),
+    NbSpinnerModule,
   ],
-  providers: [ApiService],
+  providers: [ApiService, StatisticsService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

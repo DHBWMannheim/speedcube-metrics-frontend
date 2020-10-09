@@ -47,20 +47,44 @@ export class ApiService {
                 doc.data().solves.map(async (solve) => solve.get())
               );
 
-              return solves.map((solve: any) => solve.data());
+              return {
+                id: doc.id,
+                ...doc.data(),
+                solves: solves.map((solve: any) => solve.data()),
+              };
             })
           )
       );
   }
 
+  async getCompetitionById(id: string) {
+    return this.firestore
+      .collection('competitionSolves')
+      .doc(id)
+      .get()
+      .toPromise()
+      .then(async (doc) => {
+        const solves = await Promise.all(
+          doc.data().solves.map(async (solve) => solve.get())
+        );
+
+        return {
+          id: doc.id,
+          ...doc.data(),
+          solves: solves.map((solve: any) => solve.data()),
+        };
+      });
+  }
+
   async addCompetition(competition): Promise<void> {
     const solves = await Promise.all(
-      competition.map(async (solve) => {
+      competition.solves.map(async (solve) => {
         const newSolve = await this.firestore.collection('solves').add(solve);
         return this.firestore.doc(`solves/${newSolve.id}`).ref;
       })
     );
     await this.firestore.collection('competitionSolves').add({
+      ...competition,
       solves,
     });
   }
