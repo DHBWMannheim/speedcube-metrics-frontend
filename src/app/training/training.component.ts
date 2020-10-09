@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
+import { StatisticsService } from '../statistics.service';
 
 @Component({
   selector: 'app-training',
@@ -8,9 +9,11 @@ import { ApiService } from '../api.service';
 })
 export class TrainingComponent implements OnInit {
   public api: ApiService;
+  public statistics: StatisticsService;
 
-  constructor(api: ApiService) {
+  constructor(api: ApiService, statistics: StatisticsService) {
     this.api = api;
+    this.statistics = statistics;
   }
 
   public timeBegan = null;
@@ -18,38 +21,18 @@ export class TrainingComponent implements OnInit {
   public stoppedDuration: any = 0;
   public started = null;
   public running = false;
-  public blankTime = '00:00.000';
-  public time = '00:00.000';
+  public blankTime = '00:00.00';
+  public time = '00:00.00';
   public ms = 0;
   public timeElapsed: any = null;
   public scramble = '';
 
-  generate_scramble = (): void => {
-    const moves = [
-      ['U', "U'", 'U2'],
-      ['D', "D'", 'D2'],
-      ['R', "R'", 'R2'],
-      ['L', "L'", 'L2'],
-      ['F', "F'", 'F2'],
-      ['B', "B'", 'B2'],
-    ];
-
-    let scramble = '';
-    let lastMoveType = null;
-
-    for (let i = 0; i < 20; i++) {
-      let moveType = Math.floor(Math.random() * 6);
-      moveType = moveType === lastMoveType ? (moveType + 1) % 6 : moveType;
-      const move = Math.floor(Math.random() * 3);
-      scramble += ` ${moves[moveType][move]}`;
-      lastMoveType = moveType;
-    }
-
-    this.scramble = scramble.trim();
-  };
+  generate_scramble(): void {
+    this.scramble = this.statistics.generateScramble();
+  }
 
   ngOnInit(): void {
-    this.generate_scramble();
+    this.generate_scramble()
   }
 
   start() {
@@ -70,7 +53,7 @@ export class TrainingComponent implements OnInit {
     this.running = false;
     this.timeStopped = new Date();
     clearInterval(this.started);
-    this.generate_scramble();
+    this.generate_scramble()
     await this.api.addTrainingSolve({
       scramble: this.scramble,
       time: this.ms,
@@ -81,7 +64,7 @@ export class TrainingComponent implements OnInit {
   cancel() {
     this.running = false;
     this.reset();
-    this.generate_scramble();
+    this.generate_scramble()
     clearInterval(this.started);
   }
   reset() {
@@ -104,18 +87,10 @@ export class TrainingComponent implements OnInit {
     this.timeElapsed = new Date(
       currentTime - this.timeBegan - this.stoppedDuration
     );
-    let min = this.timeElapsed.getUTCMinutes();
-    let sec = this.timeElapsed.getUTCSeconds();
-    let ms = this.timeElapsed.getUTCMilliseconds();
-    this.time =
-      this.zeroPrefix(min, 2) +
-      ':' +
-      this.zeroPrefix(sec, 2) +
-      '.' +
-      this.zeroPrefix(ms, 3);
     this.ms =
       this.timeElapsed.getUTCMilliseconds() +
       this.timeElapsed.getUTCSeconds() * 1000 +
       this.timeElapsed.getUTCMinutes() * 1000 * 60;
+    this.time = this.statistics.formatTime(this.ms)
   }
 }

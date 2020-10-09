@@ -23,12 +23,12 @@ export class StatisticsService {
   }
 
   best(times, format = true) {
-    const time = Math.max(...times);
+    const time = Math.min(...times);
     return format ? this.formatTime(time) : time;
   }
 
   worst(times, format = true) {
-    const time = Math.min(...times);
+    const time = Math.max(...times);
     return format ? this.formatTime(time) : time;
   }
 
@@ -61,10 +61,34 @@ export class StatisticsService {
       remainingTime -= seconds * 1000;
     }
 
-    milliseconds = remainingTime / 10;
+    milliseconds = Math.floor(remainingTime / 10);
 
     return `${this.pad(minutes)}:${this.pad(seconds)}.${this.pad(
       milliseconds
     )}`;
+  }
+
+  generateScramble(): string {
+    const moves = [
+      ['U', "U'", 'U2'],
+      ['D', "D'", 'D2'],
+      ['R', "R'", 'R2'],
+      ['L', "L'", 'L2'],
+      ['F', "F'", 'F2'],
+      ['B', "B'", 'B2'],
+    ];
+
+    let scramble = '';
+    let lastMoveType = null;
+
+    for (let i = 0; i < 20; i++) {
+      let moveType = Math.floor(Math.random() * 6);
+      moveType = moveType === lastMoveType ? (moveType + 1) % 6 : moveType;
+      const move = Math.floor(Math.random() * 3);
+      scramble += ` ${moves[moveType][move]}`;
+      lastMoveType = moveType;
+    }
+
+    return scramble.trim();
   }
 }
