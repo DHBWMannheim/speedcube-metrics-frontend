@@ -20,14 +20,14 @@ export class OverviewComponent implements OnInit {
 
   async getData() {
     this.loading = true
-    
+
     const trainingData = await this.api.getTrainingSolves()
     const competitionData = await this.api.getCompetitionSolves()
 
     this.trainingChartData = [{data: trainingData.map(solve => solve.time / 1000) }]
     this.trainingLabels = trainingData.map(solve => this.statistics.formatDate(solve.date, false))
 
-    this.competitionChartData = [{data: competitionData.map(competition => this.statistics.averageThree(competition.solves.map(solve => solve.time), false) as number)}]
+    this.competitionChartData = [{data: competitionData.map(competition => this.statistics.averageThree(competition.solves.map(solve => solve.time), false) as number / 1000)}]
     this.competitionLabels = competitionData.map((competition: any) => this.statistics.formatDate(competition.date, false))
 
     this.loading = false
