@@ -8,9 +8,25 @@ import { auth } from 'firebase/app';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  isloggedIn : boolean;
+  public isloggedIn : boolean;
+  public showPassword = false;
+
+  public email: string = '';
+  public password: string  = ''
+
   constructor(public authService: AngularFireAuth) {
     this.isloggedIn = false;
+  }
+
+  getInputType() {
+    if (this.showPassword) {
+      return 'text';
+    }
+    return 'password';
+  }
+
+  toggleShowPassword() {
+    this.showPassword = !this.showPassword;
   }
 
   async login() {

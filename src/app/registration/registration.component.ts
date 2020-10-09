@@ -8,12 +8,24 @@ import { auth } from 'firebase/app';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
-  value = '';
-  onEnter(value: string){
-    this.value = value
-  }
+  public showPassword = false;
+
+  public email: string = '';
+  public password1: string  = '';
+  public password2: string  = '';
 
   constructor(public authService: AngularFireAuth) { }
+
+  getInputType() {
+    if (this.showPassword) {
+      return 'text';
+    }
+    return 'password';
+  }
+
+  toggleShowPassword() {
+    this.showPassword = !this.showPassword;
+  }
 
   ngOnInit(): void {
   }

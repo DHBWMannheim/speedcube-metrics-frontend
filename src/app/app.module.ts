@@ -11,7 +11,9 @@ import {
   NbButtonModule,
   NbCardModule,
   NbContextMenuModule,
+  NbFormFieldModule,
   NbIconModule,
+  NbInputModule,
   NbLayoutModule,
   NbListModule,
   NbMenuModule,
@@ -37,6 +39,7 @@ import { TrainingComponent } from './training/training.component';
 import { TrainingoverviewComponent } from './trainingoverview/trainingoverview.component';
 import { ApiService } from './api.service';
 import { StatisticsService } from './statistics.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -90,6 +93,9 @@ import { StatisticsService } from './statistics.service';
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
     NbSpinnerModule,
+    NbInputModule,
+    NbFormFieldModule,
+    FormsModule
   ],
   providers: [ApiService, StatisticsService],
   bootstrap: [AppComponent],
