@@ -90,14 +90,14 @@ export class OverviewComponent implements OnInit {
       ],
     },
   ];
-  public lineChartLabels: Label[] = ['', '', '', '', ''];
+  public lineChartLabels: Label[] = ['1', '2', '3', '4', '5'];
   public lineChartOptions: any = {
     responsive: true,
   };
   public lineChartColors: Color[] = [
     {
-      borderColor: 'rgba(34,126,232)',
-      backgroundColor: '',
+      borderColor: '#0095ff',
+      backgroundColor: 'rgba(0, 149, 255, 0.1)',
     },
   ];
   public lineChartLegend = false;
