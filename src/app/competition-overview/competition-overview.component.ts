@@ -10,10 +10,7 @@ import { StatisticsService } from '../statistics.service';
 })
 export class CompetitionOverviewComponent implements OnInit {
   public competitions = [];
-  public api: ApiService;
   public loading: boolean = true;
-  public statistics: StatisticsService;
-  public router: Router;
 
   async getData() {
     try {
@@ -24,11 +21,7 @@ export class CompetitionOverviewComponent implements OnInit {
     }
   }
 
-  constructor(api: ApiService, statistics: StatisticsService, router: Router) {
-    this.api = api;
-    this.statistics = statistics;
-    this.router = router;
-  }
+  constructor(private api: ApiService, private statistics: StatisticsService, private router: Router) {}
 
   ngOnInit(): void {
     this.getData();

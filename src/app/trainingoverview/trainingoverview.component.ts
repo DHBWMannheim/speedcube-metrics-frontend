@@ -9,14 +9,9 @@ import { StatisticsService } from '../statistics.service';
 })
 export class TrainingoverviewComponent implements OnInit {
   public solves = [];
-  public api: ApiService;
-  public statistics: StatisticsService;
   public loading: boolean = true;
 
-  constructor(api: ApiService, statistics: StatisticsService) {
-    this.api = api;
-    this.statistics = statistics;
-  }
+  constructor(private api: ApiService, private statistics: StatisticsService) {}
 
   async getData() {
     try {

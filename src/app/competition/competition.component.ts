@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { StatisticsService } from '../statistics.service';
 
@@ -8,14 +9,9 @@ import { StatisticsService } from '../statistics.service';
   styleUrls: ['./competition.component.css'],
 })
 export class CompetitionComponent implements OnInit {
-  public api: ApiService;
-  public statistics: StatisticsService;
   public saving: boolean = false;
 
-  constructor(api: ApiService, statistics: StatisticsService) {
-    this.api = api;
-    this.statistics = statistics;
-  }
+  constructor(private api: ApiService, private statistics: StatisticsService, private router: Router) {}
 
   generate_scramble(): void {
     this.scramble = this.statistics.generateScramble();
@@ -108,10 +104,11 @@ export class CompetitionComponent implements OnInit {
     try {
       this.saving = true;
 
-      await this.api.addCompetition({
+      const id = await this.api.addCompetition({
         date: new Date(),
         solves: this.result,
       });
+      this.router.navigateByUrl(`/analysis/${id}`)
     } finally {
       this.saving = false;
     }

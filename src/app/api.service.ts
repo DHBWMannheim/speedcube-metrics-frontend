@@ -29,12 +29,14 @@ export class ApiService {
       );
   }
 
-  async addTrainingSolve(solve): Promise<void> {
+  async addTrainingSolve(solve): Promise<string> {
     const newSolve = await this.firestore.collection('solves').add(solve);
-    await this.firestore.collection('trainingSolves').add({
+    const newTraining = await this.firestore.collection('trainingSolves').add({
       uid: this.uid,
       solve: this.firestore.doc(`solves/${newSolve.id}`).ref,
     });
+    
+    return newTraining.id;
   }
 
   async getCompetitionSolves() {
@@ -79,17 +81,19 @@ export class ApiService {
       });
   }
 
-  async addCompetition(competition): Promise<void> {
+  async addCompetition(competition): Promise<string> {
     const solves = await Promise.all(
       competition.solves.map(async (solve) => {
         const newSolve = await this.firestore.collection('solves').add(solve);
         return this.firestore.doc(`solves/${newSolve.id}`).ref;
       })
     );
-    await this.firestore.collection('competitionSolves').add({
+    const newCompetition = await this.firestore.collection('competitionSolves').add({
       uid: this.uid,
       ...competition,
       solves,
     });
+
+    return newCompetition.id;
   }
 }

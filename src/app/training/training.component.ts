@@ -8,13 +8,8 @@ import { StatisticsService } from '../statistics.service';
   styleUrls: ['./training.component.css'],
 })
 export class TrainingComponent implements OnInit {
-  public api: ApiService;
-  public statistics: StatisticsService;
 
-  constructor(api: ApiService, statistics: StatisticsService) {
-    this.api = api;
-    this.statistics = statistics;
-  }
+  constructor(private api: ApiService, private statistics: StatisticsService) {}
 
   public timeBegan = null;
   public timeStopped: any = null;
