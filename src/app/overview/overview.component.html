@@ -2,8 +2,8 @@
   <nb-card>
     <nb-card-body>
       <div style="font-weight: 600;">Trainingsfortschritt</div>
-      <div style="margin: 20px 0;">
-        <canvas baseChart width="400" height="250" [datasets]="lineChartData" [labels]="lineChartLabels"
+      <div [nbSpinner]="loading" nbSpinnerStatus="info" style="margin: 20px 0;">
+        <canvas baseChart width="400" height="250" [datasets]="trainingChartData" [labels]="trainingLabels"
             [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
             [chartType]="lineChartType" [plugins]="lineChartPlugins">
         </canvas>
@@ -33,8 +33,8 @@
   <nb-card>
     <nb-card-body>
       <div style="font-weight: 600;">Wettkampffortschritt</div>
-      <div style="margin: 20px 0;">
-        <canvas baseChart width="400" height="250" [datasets]="lineChartData" [labels]="lineChartLabels"
+      <div [nbSpinner]="loading" nbSpinnerStatus="info" style="margin: 20px 0;">
+        <canvas baseChart width="400" height="250" [datasets]="competitionChartData" [labels]="competitionLabels"
             [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
             [chartType]="lineChartType" [plugins]="lineChartPlugins">
         </canvas>

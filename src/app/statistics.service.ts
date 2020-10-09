@@ -32,8 +32,8 @@ export class StatisticsService {
     return format ? this.formatTime(time) : time;
   }
 
-  formatDate(date) {
-    return format(date.toDate(), 'dd.MM.yy kk:mm');
+  formatDate(date, time = true) {
+    return format(date.toDate(), time ? 'dd.MM.yy kk:mm' : 'dd.MM.yy');
   }
 
   pad = (n: number) => (String(n) as any).padStart(2, '0').substring(0, 2);

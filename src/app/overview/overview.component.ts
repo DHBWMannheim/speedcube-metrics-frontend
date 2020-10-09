@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartDataSets } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
-import { Results } from '../results';
+import { ApiService } from '../api.service';
+import { StatisticsService } from '../statistics.service';
 
 @Component({
   selector: 'app-overview',
@@ -9,88 +10,35 @@ import { Results } from '../results';
   styleUrls: ['./overview.component.css'],
 })
 export class OverviewComponent implements OnInit {
-  chart = [];
+  public loading: boolean = true;
 
-  constructor() {}
+  public trainingChartData: ChartDataSets[] = []
+  public trainingLabels: Label[] = []
 
-  ngOnInit(): void {}
-  public results = [
-    {
-      scramble: "U R F' L2 R' B D' U2 F U' L' D R'",
-      time: 40000,
-      round: 1,
-      date: new Date(),
-      timeElapsed: '00:21.234',
-    },
-    {
-      scramble: "U R F' L2 R' B D' U2 F U' L' D R'",
-      time: 39236,
-      round: 2,
-      date: new Date(),
-      timeElapsed: '00:39.234',
-    },
-    {
-      scramble: "U R F' L2 R' B D' U2 F U' L' D R'",
-      time: 27362,
-      round: 3,
-      date: new Date(),
-      timeElapsed: '00:25.234',
-    },
-    {
-      scramble: "U R F' L2 R' B D' U2 F U' L' D R'",
-      time: 30236,
-      round: 4,
-      date: new Date(),
-      timeElapsed: '00:30.234',
-    },
-    {
-      scramble: "U R F' L2 R' B D' U2 F U' L' D R'",
-      time: 23000,
-      round: 5,
-      date: new Date(),
-      timeElapsed: '00:29.234',
-    },
-  ];
+  public competitionChartData: ChartDataSets[] = []
+  public competitionLabels: Label[] = []
 
-  public resultRounds: Results[] = [
-    {
-      round: this.results[0].round,
-      roundTime: this.results[0].timeElapsed,
-      roundInstructions: this.results[0].scramble,
-    },
-    {
-      round: this.results[1].round,
-      roundTime: this.results[1].timeElapsed,
-      roundInstructions: this.results[1].scramble,
-    },
-    {
-      round: this.results[2].round,
-      roundTime: this.results[2].timeElapsed,
-      roundInstructions: this.results[2].scramble,
-    },
-    {
-      round: this.results[3].round,
-      roundTime: this.results[3].timeElapsed,
-      roundInstructions: this.results[3].scramble,
-    },
-    {
-      round: this.results[4].round,
-      roundTime: this.results[4].timeElapsed,
-      roundInstructions: this.results[4].scramble,
-    },
-  ];
-  public lineChartData: ChartDataSets[] = [
-    {
-      data: [
-        this.results[0].time / 1000,
-        this.results[1].time / 1000,
-        this.results[2].time / 1000,
-        this.results[3].time / 1000,
-        this.results[4].time / 1000,
-      ],
-    },
-  ];
-  public lineChartLabels: Label[] = ['1', '2', '3', '4', '5'];
+  async getData() {
+    this.loading = true
+    
+    const trainingData = await this.api.getTrainingSolves()
+    const competitionData = await this.api.getCompetitionSolves()
+
+    this.trainingChartData = [{data: trainingData.map(solve => solve.time / 1000) }]
+    this.trainingLabels = trainingData.map(solve => this.statistics.formatDate(solve.date, false))
+
+    this.competitionChartData = [{data: competitionData.map(competition => this.statistics.averageThree(competition.solves.map(solve => solve.time), false) as number)}]
+    this.competitionLabels = competitionData.map((competition: any) => this.statistics.formatDate(competition.date, false))
+
+    this.loading = false
+  }
+
+  constructor(private api: ApiService, private statistics: StatisticsService) {}
+
+  ngOnInit(): void {
+    this.getData()
+  }
+
   public lineChartOptions: any = {
     responsive: true,
   };
