@@ -19,9 +19,8 @@
       <button nbButton outline size="small" status="info" [routerLink]="'/registration'">
         Registrieren
       </button>
-      <button nbButton outline size="small" status="info" (click)="login()">
+      <button [nbSpinner]="loggingIn" nbSpinnerStatus="info" nbButton outline size="small" status="info" (click)="login()">
         Login
-        <nb-icon icon="arrow-circle-right-outline"></nb-icon>
       </button>
     </div>
     <div style="display: grid; grid-template-columns: 1fr; grid-gap: 10px; margin: 15px 40px;">

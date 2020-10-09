@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { NbMenuItem, NbSidebarService } from '@nebular/theme';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
+import { NbMenuItem, NbMenuService, NbSidebarService } from '@nebular/theme';
 
 @Component({
   selector: 'app-root',
@@ -7,37 +9,43 @@ import { NbMenuItem, NbSidebarService } from '@nebular/theme';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  constructor(private sidebarService: NbSidebarService) {}
+  constructor(private sidebarService: NbSidebarService, menuService: NbMenuService, authService: AngularFireAuth, router: Router) {
+    menuService.onItemClick().subscribe(({item}) => {
+      if (item.title === 'Logout') {
+        authService.signOut().then(() => router.navigateByUrl('login'))
+      }
+    })
+  }
 
   public menuItems: NbMenuItem[] = [
     {
       title: 'Fortschritt',
       icon: 'home-outline',
-      link: '/main',
+      link: '/',
     },
     {
       title: 'Training',
       icon: 'clock-outline',
-      link: '/main/training',
+      link: '/training',
     },
     {
       title: 'Training Übersicht',
       icon: 'bar-chart-outline',
-      link: '/main/trainingoverview',
+      link: '/trainingoverview',
     },
     {
       title: 'Wettkampf',
       icon: 'cube-outline',
-      link: '/main/competition',
+      link: '/competition',
     },
     {
       title: 'Wettkampf Übersicht',
       icon: 'award-outline',
-      link: '/main/competitionoverview',
+      link: '/competitionoverview',
     },
     {
       title: 'Logout',
-      icon: 'unlock-outline',
+      icon: 'unlock-outline'
     },
   ];
 

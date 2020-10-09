@@ -31,7 +31,6 @@ import { CompetitionOverviewComponent } from './competition-overview/competition
 import { CompetitionComponent } from './competition/competition.component';
 import { CubeComponent } from './cube/cube.component';
 import { LoginComponent } from './login/login.component';
-import { MainBackgroundComponent } from './main-background/main-background.component';
 import { OverviewComponent } from './overview/overview.component';
 import { PageNotFoundComponentComponent } from './page-not-found-component/page-not-found-component.component';
 import { RegistrationComponent } from './registration/registration.component';
@@ -40,6 +39,7 @@ import { TrainingoverviewComponent } from './trainingoverview/trainingoverview.c
 import { ApiService } from './api.service';
 import { StatisticsService } from './statistics.service';
 import { FormsModule } from '@angular/forms';
+import { routes } from './routes'
 
 @NgModule({
   declarations: [
@@ -50,7 +50,6 @@ import { FormsModule } from '@angular/forms';
     TrainingComponent,
     CompetitionComponent,
     AnalysisComponent,
-    MainBackgroundComponent,
     TrainingoverviewComponent,
     CompetitionOverviewComponent,
     PageNotFoundComponentComponent,
@@ -58,22 +57,7 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot([
-      { path: '', component: LoginComponent },
-      { path: 'login', component: LoginComponent },
-      { path: 'registration', component: RegistrationComponent },
-      { path: 'main', component: MainBackgroundComponent },
-      { path: 'main/competition', component: CompetitionComponent },
-      { path: 'main/overview', component: OverviewComponent },
-      { path: 'main/training', component: TrainingComponent },
-      { path: 'main/analysis/:id', component: AnalysisComponent },
-      { path: 'main/trainingoverview', component: TrainingoverviewComponent },
-      {
-        path: 'main/competitionoverview',
-        component: CompetitionOverviewComponent,
-      },
-      { path: '**', component: PageNotFoundComponentComponent },
-    ]),
+    RouterModule.forRoot(routes),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,

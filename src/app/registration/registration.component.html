@@ -1,5 +1,5 @@
 <nb-card>
-  <nb-card-body>
+  <nb-card-body style="text-align: center;">
     <h2>Registrieren</h2>
     <nb-form-field>
       <nb-icon nbPrefix icon="email-outline"></nb-icon>
@@ -29,9 +29,8 @@
       <button nbButton outline size="small" status="info" [routerLink]="'/login'">
         Login
       </button>
-      <button nbButton outline size="small" status="info" (click)="register()">
+      <button [nbSpinner]="registrating" nbSpinnerStatus="info" nbButton outline size="small" status="info" (click)="register()">
         Registrieren
-        <nb-icon icon="arrow-circle-right-outline"></nb-icon>
       </button>
     </div>
     <div style="display: grid; grid-template-columns: 1fr; grid-gap: 10px; margin: 15px 40px;">
