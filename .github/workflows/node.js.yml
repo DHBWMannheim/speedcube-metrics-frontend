@@ -14,8 +14,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
-      with:
-        node-version: latest
     - run: npm ci
     - run: npm run build --if-present -- --prod=true
     - uses: w9jds/firebase-action@master
