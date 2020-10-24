@@ -8,10 +8,10 @@ describe('I am Speeeed', () => {
     const email = chance.email();
     const pass = 'ValidPassword123';
 
+
     beforeEach(() => {
     
-        cy.clearLocalStorage();
-        cy.clearCookies();
+        
         cy.visit('http://localhost:4200');
     });
 
@@ -26,13 +26,17 @@ describe('I am Speeeed', () => {
     
     it('Login-page and has correct title', () => {
 
+        cy.clearLocalStorage();
+        cy.clearCookies();
+
         // Komm nicht drauf, warum der noch eingeloggt ist, obwohl ich zuvor den Cache leere und damit eigentlich der Token auch weg sein sollte? :shrug:
         cy.visit('http://localhost:4200');
         
-        if(cy.findByText('pdm.testing@outlook.de')){
+        /*if(cy.findByText('pdm.testing@outlook.de')){
             cy.get('[icon=menu-outline]').click();
             cy.contains('Logout').click();
         }
+        */
 
         cy.url().should('include','login');
         cy.contains('Login');
@@ -65,7 +69,7 @@ describe('I am Speeeed', () => {
 
     });
 
-    it('Content in Fortschritt-Site after Login', () => {
+    it('Content in Fortschritt-page after Login', () => {
 
         cy.findByPlaceholderText('E-Mail').type('pdm.testing@outlook.de');
         
@@ -77,9 +81,18 @@ describe('I am Speeeed', () => {
 
         //cy.findAllByRole('button', {name : 'Übersicht'}).and({ng-reflect-routerlink : "/trainingoverview"});
         cy.findByRole('button', {name : 'Training starten'});
-        cy.findAllByRole('button', {name : 'Übersicht'});
+        cy.findAllByRole('button', {name : 'Übersicht'}) == 2;
         cy.findByRole('button', {name : 'Wettkampf starten'});
         
+    });
+
+    it('Content in Training-page', () => {
+        cy.visit('http://localhost:4200/training');
+        const oldScramble = cy.get('app-cube').children('ng-reflect-scramble');
+        cy.findByRole('button', {name : 'Neuer Scramble'}).click();
+        const newScramble = cy.get('app-cube').children('ng-reflect-scramble');
+        oldScramble != newScramble;
+
     });
 
 
