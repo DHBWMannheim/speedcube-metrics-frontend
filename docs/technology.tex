@@ -1,3 +1,29 @@
 % !TeX root = ./doku.tex
 
-Testo
+Im folgenden Abschnitt wird kurz die Wahl eines \textbf{BaaS} (Backend as a Service) Anbieters erläuter. Dabei liegt der Fokus vor allem darauf, wieso ein BaaS unter dem gegebenen Anwendungsfall sinnvoll ist.
+
+\subsection{Was ist ein BaaS}
+\begin{definition}[Backend as a Service]
+    Backend-as-a-Service (BaaS) ist ein Cloud-Service-Modell, bei dem Entwickler alle Hintergrundaspekte einer Web- oder Mobilanwendung auslagern, so dass sie nur das Frontend schreiben und warten müssen. BaaS-Anbieter bieten vorab geschriebene Software für Aktivitäten auf Servern an, z. B. Benutzerauthentifizierung, Datenbankverwaltung, Remote Updates und Push-Benachrichtigungen (für mobile Apps) sowie Cloud-Storage und -Hosting 
+    \footnote{\url{https://www.cloudflare.com/de-de/learning/serverless/glossary/backend-as-a-service-baas/}}.
+
+    Anhand dieser Definition lässt sich erkennen, dass ein BaaS darauf abzielt, Entwicklungszeiten zu verkürzen und klassische Aufgaben bei der Erstellung einer Webapp zu standardisieren. Zu dem typischen Elementen, die durch BaaS-Anbieter übernommen werden gehören:
+    \begin{itemize}
+        \item Datenbankverwaltung
+        \item Cloud-Speicher
+        \item Authentifizierung
+        \item Push-Notifications
+        \item Hosting
+    \end{itemize}
+
+    Es ist zu erkennen, dass so die Entwicklung und die initiale Hürde verloren geht, da elementare Bestandteile einer Webapplikation bereites vorhanden sind und nicht für jeden Anwendungsfall erneut entwickelt werden müssen. Mithilfe einer vorhanden Datenbank und einer sicheren, verwalteten Nutzerauthentifizierung sind bereits Grundsteine gelegt, damit eine Webapp erfolgreich aufgebaut werden kann. Das Modell eines BaaS ist noch nicht sehr alt und wurde innerhalb der letzten Jahre immer populäre. Ereignisse, wie die strikte Regulierung der DSGVO stellt die Nutzung dieser Modelle in einem Enterpreiseumfeld vor Herausforderungen. Diese müssen vor einer Entscheidung für einen solchen Dienst abgewogen werden.
+
+    \subsection{Wieso Firebase?}
+    Innerhalb dieses Anwendungsfalles lassen sich verschiedene Aspekte finden, welche für die Nutzung eines BaaS und auch Firebase als populären Anbieter eines solchen Service sprechen.
+    \begin{enumerate}
+        \item \textbf{Speicherung weniger bis garkeiner nutzerspezifischer Daten:}\\
+        In diesem Anwendungsfall werden Nutzerdaten nur gespeichert, damit der eigene Fortschritt visualisiert werden kann. Das bedeutet im Kern, dass außer einer eindeutigen Mailadresse keine zusätzlichen Informationen eines Nutzers benötigt werden. Mithilfe von verschiedenen Social-Auth Providern kann auch eine sichere Authentifizierung gewährleistet werden, da diese immer einem aktuellen Web-Standard - OAuth 2.0 - folgen.
+        \item \textbf{kaum speziell im Backend auszuführende Logik:}\\
+        Dadurch, dass diese Applikation vorerst rein zum visualisieren des persönliches Fortschritts dient, gibt es sehr wenig Logik, die auf einem Server ausgeführt werden müssten. Durch die direkte Verbindung zwischen Frontend und Datenbank mittels Firebase können Lese- und Schreibanforderungen direkt im Frontend gesteuert werden. Die Logik zum generieren eines zufälligen Scrumbles und zum erstellen des 3D-Cubes wird mithilfe einer \enquote{serverless Function} ausgeführt.
+    \end{enumerate}
+\end{definition}

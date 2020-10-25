@@ -7,6 +7,11 @@
 \usepackage{graphicx}
 \usepackage{color}
 \usepackage{hyperref}
+\usepackage{amsthm}
+\usepackage{csquotes}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
 
 \hypersetup{linktoc=all,colorlinks=true,linkcolor=black}
 
@@ -65,7 +70,7 @@
 	\end{center} 
 	\section{UI Design}
 	\section{Technology \& Architecture}
-	\include{technology.tex}
+	\input{technology.tex}
 	\section{Testing}
 		Aufgrund unserer Wahl für Firebase als Backend sind Backendtests hinfällig und lediglich UI-Tests im Frontend werden benötigt. Hierfür wird \href{https://www.cypress.io/}{cypress} als Testing-Framework genutzt.
 
