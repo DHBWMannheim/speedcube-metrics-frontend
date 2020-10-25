@@ -66,5 +66,14 @@
 	\section{UI Design}
 	\section{Technology \& Architecture}
 	\section{Testing}
+		Aufgrund unserer Wahl für Firebase als Backend sind Backendtests hinfällig und lediglich UI-Tests im Frontend werden benötigt. Hierfür wird \href{https://www.cypress.io/}{cypress} als Testing-Framework genutzt.
+
+		Im Rahmen der Frontend-Tests wird zuerst getestet, dass dem Nutzer die korrekte Anmeldemaske angezeigt wird, welche die beiden Anmeldefelder mit Email und Passwort, ein Registrierungsbutton, ein Anmeldebutton und je ein Button um sich mit Google oder Github anmelden zu können, enthalten soll. Desweiteren wird hier getestet ob ein erfolgreiches An- und Abmelden möglich ist.
+
+		Nach dem erfolgreichen Anmelden wir die Fortschrittsseite angezeigt, welche sowohl den Trainingsfortschritt, als auch den Wettkampffortschritt enthält. Unter jeder Fortschrittsansicht sind zwei Buttons. Mit einem kann die jeweilige Übersicht detaillierter angezeigt werden, mit dem anderen kann ein Wettkampf / Training gestartet werden.
+		
+		Das korrekte Öffnen und Schließen des seitlichen Menüs wird ebenfalls getestet. Über dieses Menü können alle weiteren Funktionalitäten der Anwendung erreicht werden. Das Öffnen dieser Funktionalitäten ist ebenfalls getestet.
+		
+		Die spezifischen Inhalte von den unterschiedlichen Funktionalitäten sind ebenfalls getestet.
 	\section{Backlog}
 \end{document}
