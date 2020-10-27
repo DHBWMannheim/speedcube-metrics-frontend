@@ -57,12 +57,12 @@
 
 \section{Worum geht es?}
 \subsection{Die Idee}
-Als Ernő Rubik 1974 den sogennaten Zauberwürfel entwarf wurde das Puzzle zu einem weltweiten Phänomen.
+Als Ernő Rubik 1974 den sogennaten Zauberwürfel entwarf wurde das Puzzle zu einem weltweiten Phänomen \cite{ernorubik}.
 Millionen von Kindern und Erwachsenen versuchten sich an diesem Rätsel, wobei die Lösung oft als unmöglich
 galt. Schließlich kamen erste Lösungsanleitungen wie die Fridrich- oder die Roux-Methode. Damit konnte jeder Würfel
 mithilfe weniger Algorithmen gelöst werden. Schnell folgten erste Weltrekorde, der erste offizielle
 Weltrekord lag dabei noch bei 22.95 Sekunden, wobei die Zeiten schnell fielen. Heute liegt der Weltrekord für den
-3x3 bei unglaublichen 3.47 Sekunden, eine Leistung die Glück und vorallem dediziertes Training erfordert.
+3x3 bei unglaublichen 3.47 Sekunden, eine Leistung die Glück und vorallem dediziertes Training erfordert \cite{worldcubeassociation}.
 
 Spätestens mit dem bekannter werden von Speedcubing (dem Lösen eines Zauberwürfels in möglichst kurzer Zeit)
 entstanden erste Softwareunterstützungen für Training und Wettkämpfe. Es wurden Algorithmen entwickelt, mit denen
@@ -76,7 +76,7 @@ unter anderem an dem recht altmodischen Design, als auch an fehlenden oder schle
 Da sich in unserer Gruppe Speedcuber befinden, welche solche Seiten regelmäßig nutzen hatten wir die Idee im
 Rahmen dieser Vorlesung eine Webapp zu entwickeln, welche (unserer Meinung nach) eine bessere Alternative zu bestehenden
 Angeboten darstellt. Dabei wollen wir auf bestehenden und funktionierenden Methoden aufbauen und mit entsprechenden
-modernen Features und Designentscheidungen die User Experience und den Spaß am Speedcubing verbessern.
+modernen Features und Designentscheidungen die User Experience und den Spaß am Speedcubing erhöhen.
 
 \section{How to Use?}
 \subsection*{Anmeldung und Registrierung}
@@ -137,6 +137,27 @@ Das korrekte Öffnen und Schließen des seitlichen Menüs wird ebenfalls geteste
 Die spezifischen Inhalte von den unterschiedlichen Funktionalitäten sind ebenfalls getestet.
 
 \section{Backlog}
+Das Backlog beinhaltet alle Features, welche es nicht in die Implementierung geschafft haben. Grund dafür ist
+unsere Einschätzung bezüglich des Nutzen-Aufwands.
+
+\begin{itemize}
+	\item Eine Berechnung des Lösungsalgorithmus anhand von Image Recognition des Zauberwürfels. Dabei soll der
+	      User mithilfe seiner Kamera den Würfel einscannen und die Software den entsprechenden Lösungsalgorithmus
+	      berechnen. Die Challenge hier ist das Einscannen des Würfels, da das Training eines Models sehr aufwendig ist
+	      (alle Testdaten müssten selbst generiert werden) und die Fehlerquote womöglich aufgrund Belichtung und anderer
+	      Einflüsse sehr hoch ist.
+	\item Die Berechnung der Umdrehungen pro Sekunde anhand der Geräusche die ein Würfel beim drehen von
+	      sich gibt. Dabei ist ein wichtiger, aber auch sehr schwer zu messender Indikator für einen Speedcuber die TPS
+	      (Turns per Second). Wir hatten die Idee mithilfe von Audio Recognition Software diese Umdrehungen zu messen
+	      und für den User entsprechend darzustellen. Damit kann dann auch berechnet werden, wie flüssig der Speedcuber
+	      den Zauberwürfel gelöst hat, indem man sich die Spannweite der TPS betrachtet. Mögliche Challenges wäre hier
+	      wieder die Audio Recognition, obwohl diese womöglich wesentlich einfach ist als die Image Recognition. Mögliche
+	      Fehlerquellen wären hier störende Hintergrundgeräusche oder der individuelle Klang jedes Würfels.
+	\item Das Vergleichen der eigenen Leistung mit Freunden und anderen Nutzern der Webapp. Da Konkurrenz wohl die
+	      größte Motivation darstellt sich zu verbessern soll der User die Möglichkeit besitzen seine Leistungen
+	      mit allen zu teilen. Dies soll mithilfe einer globalen Rangliste möglich sein. Challenges wären hier die
+	      Verifikation, da man ohne weiteres die Zeit stoppen kann und diese veröffentlichen kann.
+\end{itemize}
 
 \clearpage
 
