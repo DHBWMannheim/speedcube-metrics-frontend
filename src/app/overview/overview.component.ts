@@ -7,7 +7,7 @@ import { StatisticsService } from '../statistics.service';
 @Component({
   selector: 'app-overview',
   templateUrl: './overview.component.html',
-  styleUrls: ['./overview.component.css'],
+  styleUrls: [],
 })
 export class OverviewComponent implements OnInit {
   public loading: boolean = true;

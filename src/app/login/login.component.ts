@@ -6,7 +6,7 @@ import { auth } from 'firebase/app';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: [],
 })
 export class LoginComponent {
   public loggingIn: boolean = false;

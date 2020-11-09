@@ -5,7 +5,7 @@ import { StatisticsService } from '../statistics.service';
 @Component({
   selector: 'app-training',
   templateUrl: './training.component.html',
-  styleUrls: ['./training.component.css'],
+  styleUrls: [],
 })
 export class TrainingComponent implements OnInit {
 

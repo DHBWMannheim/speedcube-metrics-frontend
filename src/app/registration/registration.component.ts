@@ -6,7 +6,7 @@ import { auth } from 'firebase/app';
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.css']
+  styleUrls: []
 })
 export class RegistrationComponent {
   public showPassword = false;

@@ -6,7 +6,7 @@ import { StatisticsService } from '../statistics.service';
 @Component({
   selector: 'app-competition',
   templateUrl: './competition.component.html',
-  styleUrls: ['./competition.component.css'],
+  styleUrls: [],
 })
 export class CompetitionComponent implements OnInit {
   public saving: boolean = false;
