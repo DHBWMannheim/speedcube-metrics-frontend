@@ -87,7 +87,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "assets": ["src/favicon.ico", "src/assets", "src/manifest.json"],
+            "assets": ["src/favicon.ico", "src/assets", "src/manifest.json", "src/android-chrome-192x192.png", "src/android-chrome-512x512.png"],
             "styles": ["src/styles.scss"],
             "scripts": []
           }
